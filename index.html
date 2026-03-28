@@ -402,11 +402,17 @@ body.show-notes .notes {
               </div>
             </div>
 
-            <!-- Bidirectional arrows aligned to chip rows -->
+            <!-- Bidirectional arrows between paired chips -->
             <div style="display:flex; flex-direction:column; justify-content:center; gap: clamp(10px, 1vw, 16px);
-              padding: 0 clamp(8px, 0.8vw, 14px); color: var(--text-muted); font-size: clamp(16px, 1.2vw, 20px);">
-              <div>&harr;</div>
-              <div>&harr;</div>
+              padding: 0 clamp(4px, 0.4vw, 8px); min-width: clamp(28px, 3vw, 48px);">
+              <svg viewBox="0 0 40 12" style="width: 100%; height: auto; overflow: visible;">
+                <defs><marker id="ah1" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto"><path d="M0,0 L5,2 L0,4" fill="#5b8fd4" opacity="0.7"/></marker>
+                <marker id="ah2" markerWidth="5" markerHeight="4" refX="0" refY="2" orient="auto"><path d="M5,0 L0,2 L5,4" fill="#5b8fd4" opacity="0.7"/></marker></defs>
+                <line x1="2" y1="6" x2="38" y2="6" stroke="#5b8fd4" stroke-width="1.5" opacity="0.6" marker-start="url(#ah2)" marker-end="url(#ah1)"/>
+              </svg>
+              <svg viewBox="0 0 40 12" style="width: 100%; height: auto; overflow: visible;">
+                <line x1="2" y1="6" x2="38" y2="6" stroke="#5b8fd4" stroke-width="1.5" opacity="0.6" marker-start="url(#ah2)" marker-end="url(#ah1)"/>
+              </svg>
             </div>
 
             <!-- Fluid Framework — overlaps: top inside Pages App, bottom extends below -->
