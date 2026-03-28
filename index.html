@@ -381,72 +381,71 @@ body.show-notes .notes {
           <div class="metric"><div class="metric-value">6&ndash;8</div><div class="metric-label">engineers</div></div>
         </div>
       </div>
-      <!-- RIGHT: Diagram showing Pages App overlapping with Fluid Framework Protocol -->
-      <div style="display:flex; flex-direction:column; justify-content:center; gap: 0; position: relative;">
+      <!-- RIGHT: Overlapping diagram -->
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <div style="position: relative; width: 100%;">
 
-        <!-- Row: Rendering Layer (outside FF) + Fluid Framework Protocol box -->
-        <div style="display: flex; gap: 0; align-items: stretch;">
+          <!-- Pages App — outer box spanning Rendering Layer + Fluid Integration -->
+          <div class="sys-layer" style="border: 2px solid #5b8fd455; background: #5b8fd408; padding-bottom: clamp(10px, 1vw, 16px);">
+            <div class="sys-layer-label" style="color: var(--blue);">Pages App</div>
+            <div style="display: flex; gap: 0; margin-top: 8px; align-items: stretch;">
 
-          <!-- Rendering Layer — Pages App only, NOT in Fluid Framework -->
-          <div style="display: flex; flex-direction: column; gap: clamp(6px, 0.6vw, 10px); z-index: 2;">
-            <div class="sys-layer" style="border: 2px solid #5b8fd455; background: #5b8fd40c; min-width: clamp(120px, 12vw, 180px);">
-              <div class="sys-layer-label" style="color: var(--blue); font-size: clamp(10px, 0.8vw, 13px);">Pages App</div>
-              <div style="font-size: clamp(10px, 0.75vw, 12px); color: var(--text-muted); margin-top: 4px; margin-bottom: 8px;">Rendering Layer</div>
-              <div class="stack gap-8">
-                <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Presence</div>
-                <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Pages Data Structure</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Arrow bridge -->
-          <div style="display:flex; flex-direction:column; justify-content:center; gap:10px; padding: 0 clamp(6px, 0.6vw, 12px); color: var(--text-muted); font-size: clamp(14px, 1.1vw, 18px); z-index: 3;">
-            <span>&harr;</span>
-            <span>&harr;</span>
-          </div>
-
-          <!-- Fluid Framework Protocol — contains Fluid Integration + Services -->
-          <div class="sys-layer" style="border: 2px solid #9b7bd433; background: #9b7bd406; flex: 1;">
-            <div class="sys-layer-label" style="color: var(--purple);">Fluid Framework Protocol</div>
-
-            <!-- Fluid Integration (overlap: Pages App + FF Protocol) -->
-            <div class="sys-layer" style="border: 1.5px solid #5b8fd444; background: linear-gradient(135deg, #5b8fd40c, #9b7bd40c); margin-top: 8px; position: relative;">
-              <div class="sys-layer-label" style="color: var(--blue); font-size: clamp(10px, 0.8vw, 13px);">Fluid Integration<span class="sys-layer-sub" style="color: var(--purple);">&thinsp;Pages &cap; FF</span></div>
-              <div class="sys-chips" style="margin-top: 6px;">
-                <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">SharedTree DDS</div>
-                <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Ephemeral Notification</div>
-                <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Observability</div>
-              </div>
-            </div>
-
-            <!-- Triangle connectors -->
-            <svg style="width:100%; height: clamp(24px, 2.5vh, 36px);" viewBox="0 0 400 36" preserveAspectRatio="xMidYMid meet">
-              <line x1="100" y1="2" x2="60" y2="34" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
-              <line x1="200" y1="2" x2="200" y2="34" stroke="#9b7bd4" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
-              <line x1="300" y1="2" x2="340" y2="34" stroke="#d4a053" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
-            </svg>
-
-            <!-- Fluid APIs + Push Service side by side -->
-            <div style="display: flex; gap: clamp(8px, 0.8vw, 14px);">
-              <div class="sys-layer" style="border: 1.5px solid #6abf7b44; background: #6abf7b0a; flex: 1;">
-                <div class="sys-layer-label" style="color: var(--green); font-size: clamp(10px, 0.8vw, 13px);">Fluid APIs</div>
-                <div class="stack gap-6" style="margin-top: 6px;">
-                  <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Ops Storage</div>
-                  <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Snapshots</div>
+              <!-- Rendering Layer (Pages only, outside FF) -->
+              <div class="sys-layer" style="border: 1.5px solid var(--border); background: var(--surface); flex: 0 0 auto; width: clamp(110px, 11vw, 160px); margin-right: 0; border-right: none; border-radius: 14px 0 0 14px;">
+                <div class="sys-layer-label" style="color: var(--text-dim); font-size: clamp(10px, 0.8vw, 13px);">Rendering Layer</div>
+                <div class="stack gap-12" style="margin-top: 8px;">
+                  <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Presence</div>
+                  <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Pages Data</div>
                 </div>
               </div>
-              <div style="display:flex; align-items:center; color: var(--text-muted); font-size: 14px;">&harr;</div>
-              <div class="sys-layer" style="border: 1.5px solid #d4a05344; background: #d4a0530a; flex: 1;">
-                <div class="sys-layer-label" style="color: var(--accent); font-size: clamp(10px, 0.8vw, 13px);">Push Service</div>
-                <div class="stack gap-6" style="margin-top: 6px;">
-                  <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Sequencing</div>
-                  <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Broadcast</div>
-                </div>
-              </div>
-            </div>
 
-          </div><!-- /Fluid Framework Protocol -->
-        </div><!-- /row -->
+              <!-- Bidirectional arrows between pairs -->
+              <div style="display:flex; flex-direction:column; justify-content:center; gap: 24px; padding: 0 clamp(4px, 0.5vw, 10px); color: var(--text-muted); font-size: clamp(13px, 1vw, 16px);">
+                <span>&harr;</span>
+                <span>&harr;</span>
+              </div>
+
+              <!-- Fluid Framework Protocol — wraps Fluid Integration + services -->
+              <div class="sys-layer" style="border: 2px solid #9b7bd433; background: #9b7bd406; flex: 1; border-radius: 0 14px 14px 14px;">
+                <div class="sys-layer-label" style="color: var(--purple); font-size: clamp(10px, 0.8vw, 13px);">Fluid Framework Protocol</div>
+
+                <!-- Fluid Integration (the overlap zone) -->
+                <div style="display: flex; gap: clamp(6px, 0.6vw, 10px); margin-top: 8px; flex-wrap: wrap;">
+                  <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex; min-width: 0;">Ephemeral Notification</div>
+                  <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex; min-width: 0;">SharedTree DDS</div>
+                  <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex; min-width: 0;">Observability</div>
+                </div>
+
+                <!-- Dashed triangle connectors -->
+                <svg style="width:100%; height: clamp(20px, 2vh, 30px);" viewBox="0 0 400 30" preserveAspectRatio="xMidYMid meet">
+                  <line x1="100" y1="2" x2="70" y2="28" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+                  <line x1="300" y1="2" x2="330" y2="28" stroke="#d4a053" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+                </svg>
+
+                <!-- Fluid APIs + Push Service -->
+                <div style="display: flex; gap: clamp(6px, 0.6vw, 10px); align-items: stretch;">
+                  <div class="sys-layer" style="border: 1.5px solid #6abf7b44; background: #6abf7b08; flex: 1; padding: clamp(8px, 1vw, 14px);">
+                    <div class="sys-layer-label" style="color: var(--green); font-size: clamp(9px, 0.75vw, 12px);">Fluid APIs</div>
+                    <div class="stack gap-6" style="margin-top: 6px;">
+                      <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Ops Storage</div>
+                      <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Snapshots</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; align-items:center; color: var(--text-muted); font-size: 13px;">&harr;</div>
+                  <div class="sys-layer" style="border: 1.5px solid #d4a05344; background: #d4a05308; flex: 1; padding: clamp(8px, 1vw, 14px);">
+                    <div class="sys-layer-label" style="color: var(--accent); font-size: clamp(9px, 0.75vw, 12px);">Push Service</div>
+                    <div class="stack gap-6" style="margin-top: 6px;">
+                      <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Sequencing</div>
+                      <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Broadcast</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /FF Protocol -->
+            </div><!-- /flex row -->
+          </div><!-- /Pages App -->
+
+        </div>
       </div>
     </div>
   </div>
