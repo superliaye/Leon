@@ -383,74 +383,86 @@ body.show-notes .notes {
       <!-- RIGHT: Overlapping diagram using CSS grid -->
       <div style="display:grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 0; align-self: center;">
 
-        <!-- ROW 1: Pages App spans full width -->
+        <!-- Pages App outer box -->
         <div style="grid-column: 1 / -1; border: 2px solid #5b8fd455; border-radius: 16px; background: #5b8fd406;
-          padding: clamp(32px, 3vw, 46px) clamp(14px, 1.2vw, 22px) clamp(14px, 1.2vw, 22px); position: relative;">
-          <div style="position:absolute; top: clamp(8px, 0.8vh, 14px); left: clamp(14px, 1.2vw, 22px);
-            font-family:var(--font-mono); font-size: clamp(14px, 1.2vw, 19px); color: #7eaee6; font-weight: 600;">Pages App</div>
+          padding: clamp(36px, 3.5vw, 52px) clamp(16px, 1.5vw, 28px) clamp(16px, 1.5vw, 28px); position: relative;">
+          <div style="position:absolute; top: clamp(10px, 1vh, 16px); left: clamp(16px, 1.5vw, 26px);
+            font-family:var(--font-mono); font-size: clamp(15px, 1.3vw, 21px); color: #7eaee6; font-weight: 600;">Pages App</div>
 
           <div style="display: flex; align-items: stretch; gap: 0;">
-            <!-- Rendering Layer — inside Pages App, outside FF -->
+
+            <!-- Rendering Layer -->
             <div style="border: 1.5px solid var(--border); border-radius: 12px; background: var(--surface);
-              padding: clamp(28px, 2.5vw, 40px) clamp(12px, 1vw, 18px) clamp(12px, 1vw, 18px); position: relative;
-              flex: 0 0 clamp(130px, 13vw, 200px);">
-              <div style="position:absolute; top: clamp(8px, 0.7vh, 12px); left: clamp(10px, 0.8vw, 14px);
-                font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--text); font-weight: 500;">Rendering Layer</div>
-              <div class="stack" style="gap: clamp(10px, 1vw, 16px);">
-                <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Presence</div>
-                <div class="sys-chip blue" style="width:100%; justify-content:center; display:flex;">Pages Data Structure</div>
+              padding: clamp(32px, 3vw, 46px) clamp(14px, 1.2vw, 22px) clamp(14px, 1.2vw, 22px); position: relative;
+              flex: 0 0 clamp(140px, 14vw, 220px);">
+              <div style="position:absolute; top: clamp(10px, 0.8vh, 14px); left: clamp(12px, 1vw, 18px);
+                font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: var(--text); font-weight: 500;">Rendering Layer</div>
+
+              <!-- Row 1: Presence → arrow → Ephemeral -->
+              <div style="display:flex; align-items:center; gap: 0; margin-bottom: clamp(10px, 1vw, 18px);">
+                <div class="sys-chip blue" style="flex: 1; justify-content:center; display:flex;">Presence</div>
+                <div style="flex: 0 0 clamp(36px, 4vw, 60px); display:flex; align-items:center; justify-content:center;">
+                  <svg viewBox="0 0 50 16" style="width:100%; height: 16px;">
+                    <defs><marker id="al" markerWidth="6" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M6,0 L0,2.5 L6,5" fill="#7eaee6"/></marker>
+                    <marker id="ar" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5" fill="#9b7bd4"/></marker></defs>
+                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8fd4" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Row 2: Pages Data → arrow → SharedTree -->
+              <div style="display:flex; align-items:center; gap: 0;">
+                <div class="sys-chip blue" style="flex: 1; justify-content:center; display:flex;">Pages Data Structure</div>
+                <div style="flex: 0 0 clamp(36px, 4vw, 60px); display:flex; align-items:center; justify-content:center;">
+                  <svg viewBox="0 0 50 16" style="width:100%; height: 16px;">
+                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8fd4" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
+                  </svg>
+                </div>
               </div>
             </div>
 
-            <!-- Bidirectional arrows between paired chips -->
-            <div style="display:flex; flex-direction:column; justify-content:center; gap: clamp(10px, 1vw, 16px);
-              padding: 0 clamp(4px, 0.4vw, 8px); min-width: clamp(28px, 3vw, 48px);">
-              <svg viewBox="0 0 40 12" style="width: 100%; height: auto; overflow: visible;">
-                <defs><marker id="ah1" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto"><path d="M0,0 L5,2 L0,4" fill="#5b8fd4" opacity="0.7"/></marker>
-                <marker id="ah2" markerWidth="5" markerHeight="4" refX="0" refY="2" orient="auto"><path d="M5,0 L0,2 L5,4" fill="#5b8fd4" opacity="0.7"/></marker></defs>
-                <line x1="2" y1="6" x2="38" y2="6" stroke="#5b8fd4" stroke-width="1.5" opacity="0.6" marker-start="url(#ah2)" marker-end="url(#ah1)"/>
-              </svg>
-              <svg viewBox="0 0 40 12" style="width: 100%; height: auto; overflow: visible;">
-                <line x1="2" y1="6" x2="38" y2="6" stroke="#5b8fd4" stroke-width="1.5" opacity="0.6" marker-start="url(#ah2)" marker-end="url(#ah1)"/>
-              </svg>
-            </div>
+            <!-- Fluid Framework — extends below Pages App -->
+            <div style="border: 2px solid #9b7bd433; border-radius: 0 14px 14px 14px; background: #9b7bd406;
+              padding: clamp(32px, 3vw, 46px) clamp(14px, 1.2vw, 22px) clamp(14px, 1.2vw, 22px); position: relative;
+              flex: 1; margin-bottom: clamp(-70px, -7vw, -110px); margin-left: -2px;">
+              <div style="position:absolute; top: clamp(10px, 0.8vh, 14px); left: clamp(12px, 1vw, 18px);
+                font-family:var(--font-mono); font-size: clamp(14px, 1.2vw, 19px); color: #b99de6; font-weight: 600;">Fluid Framework</div>
 
-            <!-- Fluid Framework — overlaps: top inside Pages App, bottom extends below -->
-            <div style="border: 2px solid #9b7bd433; border-radius: 14px; background: #9b7bd406;
-              padding: clamp(28px, 2.5vw, 40px) clamp(12px, 1vw, 18px) clamp(12px, 1vw, 18px); position: relative;
-              flex: 1; margin-bottom: clamp(-60px, -6vw, -90px);">
-              <div style="position:absolute; top: clamp(8px, 0.7vh, 12px); left: clamp(10px, 0.8vw, 14px);
-                font-family:var(--font-mono); font-size: clamp(13px, 1.1vw, 17px); color: #b99de6; font-weight: 600;">Fluid Framework</div>
+              <div style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #b99de6; font-weight: 500; margin-bottom: clamp(8px, 0.7vw, 14px);">Fluid Integration</div>
 
-              <!-- Fluid Integration label -->
-              <div style="font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--purple); font-weight: 500; margin-bottom: clamp(6px, 0.5vw, 10px);">Fluid Integration</div>
-
-              <!-- Chips row 1: Ephemeral + Observability -->
-              <div style="display:flex; gap: clamp(6px, 0.6vw, 10px); margin-bottom: clamp(6px, 0.6vw, 10px);">
+              <!-- Row 1: Ephemeral + Observability -->
+              <div style="display:flex; gap: clamp(8px, 0.8vw, 14px); margin-bottom: clamp(10px, 1vw, 18px);">
                 <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Ephemeral Notification</div>
                 <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Observability</div>
               </div>
-              <!-- Chip row 2: SharedTree -->
-              <div class="sys-chip purple" style="width:100%; justify-content:center; display:flex; margin-bottom: clamp(14px, 1.4vw, 24px);">SharedTree Distributed Data Structure (DDS)</div>
+              <!-- Row 2: SharedTree -->
+              <div class="sys-chip purple" style="width:100%; justify-content:center; display:flex; margin-bottom: clamp(20px, 2vw, 32px);">SharedTree Distributed Data Structure (DDS)</div>
 
-              <!-- Triangle connector area -->
-              <div style="text-align: center; color: var(--text-dim); font-size: clamp(11px, 0.9vw, 14px); font-family: var(--font-mono); margin-bottom: clamp(8px, 0.8vw, 14px);">&#9661; protocol contract &#9661;</div>
+              <!-- Separator -->
+              <div style="border-top: 1.5px dashed #9b7bd433; margin: 0 0 clamp(12px, 1.2vw, 20px); padding-top: clamp(10px, 1vw, 16px);">
+                <div style="text-align: center; font-family: var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: #b99de6; margin-bottom: clamp(10px, 1vw, 16px);">Protocol Services</div>
+              </div>
 
-              <!-- Fluid APIs + Push Service inside FF box bottom -->
-              <div style="display: flex; gap: clamp(10px, 1vw, 18px); align-items: stretch;">
+              <!-- Fluid APIs + Push Service -->
+              <div style="display: flex; gap: clamp(12px, 1.2vw, 22px); align-items: stretch;">
                 <div style="border: 1.5px solid #6abf7b44; border-radius: 12px; background: #6abf7b08;
-                  padding: clamp(10px, 1vw, 16px); flex: 1;">
-                  <div style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 16px); color: var(--green); font-weight: 600; margin-bottom: 4px;">Fluid APIs</div>
-                  <div style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-dim);">Ops &amp; snapshot storage</div>
+                  padding: clamp(12px, 1.2vw, 20px); flex: 1;">
+                  <div style="font-family:var(--font-mono); font-size: clamp(13px, 1.1vw, 18px); color: var(--green); font-weight: 600; margin-bottom: 4px;">Fluid APIs</div>
+                  <div style="font-size: clamp(12px, 0.95vw, 15px); color: var(--text-dim);">Ops &amp; snapshot storage</div>
                 </div>
-                <div style="display:flex; align-items:center; color: var(--text-muted); font-size: clamp(16px, 1.2vw, 20px);">&harr;</div>
+                <div style="display:flex; align-items:center;">
+                  <svg viewBox="0 0 50 16" style="width: clamp(30px, 3vw, 50px); height: 16px;">
+                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8890" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
+                  </svg>
+                </div>
                 <div style="border: 1.5px solid #d4a05344; border-radius: 12px; background: #d4a05308;
-                  padding: clamp(10px, 1vw, 16px); flex: 1;">
-                  <div style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 16px); color: var(--accent); font-weight: 600; margin-bottom: 4px;">Push Service</div>
-                  <div style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-dim);">Sequencing &amp; broadcast</div>
+                  padding: clamp(12px, 1.2vw, 20px); flex: 1;">
+                  <div style="font-family:var(--font-mono); font-size: clamp(13px, 1.1vw, 18px); color: var(--accent); font-weight: 600; margin-bottom: 4px;">Push Service</div>
+                  <div style="font-size: clamp(12px, 0.95vw, 15px); color: var(--text-dim);">Sequencing &amp; broadcast</div>
                 </div>
               </div>
             </div><!-- /Fluid Framework -->
+
           </div>
         </div><!-- /Pages App -->
 
