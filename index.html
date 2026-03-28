@@ -301,44 +301,51 @@ body.show-notes .notes {
   <div class="stack gap-24">
     <div class="stack gap-8">
       <h3 style="color: var(--blue);">Coauthoring</h3>
-      <h2>Architecture &amp; Key Design</h2>
+      <h2>Three Teams, One Protocol</h2>
     </div>
     <div class="split">
-      <div class="card" style="padding: 28px;">
-        <div class="arch-diagram">
-          <div class="arch-label">Client</div>
-          <div class="arch-row">
-            <div class="arch-box client">React Canvas</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box client">SharedTree DDS</div>
+      <div class="stack gap-16" style="justify-content: center;">
+        <!-- Triangle diagram -->
+        <div style="position:relative; width:100%; aspect-ratio:1.2; max-height: 46vh;">
+          <!-- Top node: Pages (our team) -->
+          <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); text-align:center;">
+            <div class="arch-box client" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">SharePoint Pages</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Our team &mdash; the app</div>
           </div>
-          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
-          <div class="arch-label">Service (ODSP)</div>
-          <div class="arch-row">
-            <div class="arch-box service">OpStream</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box service">Push (Seq + Broadcast)</div>
+          <!-- Bottom-left: Fluid Framework -->
+          <div style="position:absolute; bottom:0; left:0; text-align:center;">
+            <div class="arch-box infra" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">Fluid Framework</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Protocol &amp; client SDK</div>
           </div>
-          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
-          <div class="arch-label">Storage</div>
-          <div class="arch-row">
-            <div class="arch-box storage">List Item Cols</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box storage">AFP (Fluid)</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box storage">Snapshots</div>
+          <!-- Bottom-right: ODSP Services -->
+          <div style="position:absolute; bottom:0; right:0; text-align:center;">
+            <div class="arch-box service" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">ODSP Services</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Storage, sequencing, push</div>
           </div>
+          <!-- SVG lines connecting the three -->
+          <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 400 340">
+            <!-- Pages to Fluid Framework -->
+            <line x1="160" y1="55" x2="85" y2="260" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+            <text x="80" y="162" fill="#5b8fd4" font-size="11" font-family="IBM Plex Mono, monospace" transform="rotate(-60, 80, 162)">DDS + SharedTree</text>
+            <!-- Pages to ODSP -->
+            <line x1="240" y1="55" x2="315" y2="260" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+            <text x="310" y="162" fill="#6abf7b" font-size="11" font-family="IBM Plex Mono, monospace" transform="rotate(60, 310, 162)">AFP + OpStream</text>
+            <!-- Fluid to ODSP -->
+            <line x1="120" y1="290" x2="280" y2="290" stroke="#9b7bd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+            <text x="200" y="315" fill="#9b7bd4" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">Protocol contract</text>
+          </svg>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="stack gap-8">
-          <p><strong>Dual-storage architecture:</strong> List item columns serve read mode; Alternative File Partition (AFP) becomes sole source of truth during editing. Hydration converts raw page data into SharedTree; dehydration converts back on save.</p>
-          <p><strong>SharedTree DDS</strong> for tree-structured page data &mdash; schema-driven, type-safe, with event bubbling for incremental re-rendering. Runtime schema generation for cross-app code sharing and safe breaking changes via Authoring Schema Versions (ASV).</p>
+          <p><strong>Fluid Framework</strong> defines the real-time collaboration protocol (total-order broadcast). We integrate its client SDK and SharedTree DDS into the Pages editing surface.</p>
+          <p><strong>ODSP Services</strong> (separate team) provide the server-side infrastructure: storage (OpStream), operation sequencing, and WebSocket broadcasting (Push).</p>
+          <p><strong>Our role:</strong> Build the app layer and negotiate between both teams. Pages had unique requirements that didn&rsquo;t fit either team&rsquo;s standard model &mdash; we drove the architectural decisions across all three.</p>
         </div>
         <div class="card" style="border-color: #5b8fd433;">
           <div class="stack gap-8">
-            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Unique storage model</p>
-            <p style="font-size: 15px;">Pages stores Fluid data in AFP of .aspx files &mdash; unlike Loop/Whiteboard which use main file partitions. Negotiated this divergence with ODSP storage and Push teams to meet Pages&rsquo; unique constraints.</p>
+            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Why this was hard</p>
+            <p style="font-size: 15px;">Loop and Whiteboard use Fluid&rsquo;s standard storage model. Pages stores data differently (.aspx list items + AFP), so we couldn&rsquo;t just follow the playbook. Required cross-team alignment on a new storage contract.</p>
           </div>
         </div>
         <div style="display:flex; gap: 24px;">
@@ -349,7 +356,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">Walk through the three layers. List Item Cols are read-mode source of truth; AFP takes over in edit mode. SharedTree chosen for tree-structured page data with schema-driven type safety. Hydration/dehydration bridges the two worlds. ASV ensures all clients in a session use the same schema version — critical for safe breaking changes.</div>
+  <div class="notes">The triangle is the key visual. Fluid Framework team defines the protocol and SDK. ODSP team provides the server infrastructure. We're the app team integrating both — but Pages has unique storage needs (AFP in .aspx files, not .fluid files like Loop/Whiteboard). This meant we couldn't just follow the standard integration path. We had to negotiate architectural decisions with both teams simultaneously.</div>
 </div>
 
 <!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
