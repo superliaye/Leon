@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leon Ye — Career Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --surface: #151518;
+  --surface-2: #1c1c21;
+  --border: #2a2a32;
+  --text: #e8e6e1;
+  --text-dim: #8a8890;
+  --text-muted: #5a5960;
+  --accent: #d4a053;
+  --accent-dim: #d4a05333;
+  --accent-glow: #d4a05318;
+  --blue: #5b8fd4;
+  --green: #6abf7b;
+  --rose: #d45b6e;
+  --purple: #9b7bd4;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100vw; height: 100vh; overflow: hidden;
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); -webkit-font-smoothing: antialiased;
+}
+.deck { width: 100vw; height: 100vh; position: relative; }
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 56px 80px 56px;
+  opacity: 0; pointer-events: none;
+  transform: translateX(40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+.slide.exiting { opacity: 0; transform: translateX(-40px); }
+
+.slide-counter {
+  position: fixed; top: 32px; right: 48px;
+  font-family: var(--font-mono); font-size: 13px;
+  color: var(--text-muted); z-index: 100; letter-spacing: 0.05em;
+}
+.key-hint {
+  position: fixed; bottom: 24px; right: 48px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-muted); opacity: 0.4; z-index: 100;
+}
+
+h1 { font-family: var(--font-display); font-size: 60px; font-weight: 400; line-height: 1.12; }
+h2 { font-family: var(--font-display); font-size: 42px; font-weight: 400; line-height: 1.2; }
+h3 { font-family: var(--font-body); font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+p, li { font-size: 18px; line-height: 1.7; font-weight: 300; color: var(--text-dim); }
+strong { font-weight: 500; color: var(--text); }
+code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surface-2); padding: 2px 7px; border-radius: 4px; color: var(--accent); }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; flex: 1; align-items: start; }
+.stack { display: flex; flex-direction: column; }
+.gap-8 { gap: 8px; } .gap-12 { gap: 12px; } .gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; } .gap-32 { gap: 32px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.card-accent { background: var(--accent-glow); border: 1px solid var(--accent-dim); border-radius: 12px; padding: 24px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-family: var(--font-mono); font-size: 12px; padding: 4px 12px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-dim); }
+
+ul { list-style: none; padding: 0; }
+ul li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+
+.title-slide { justify-content: center; align-items: flex-start; padding: 80px 100px; }
+.title-slide h1 { font-size: 68px; line-height: 1.1; }
+.title-meta { font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); letter-spacing: 0.04em; }
+.title-line { width: 80px; height: 2px; background: var(--accent); margin: 4px 0; }
+
+.section-slide { justify-content: center; align-items: flex-start; padding: 80px 100px; }
+.section-num { font-family: var(--font-mono); font-size: 140px; font-weight: 400; color: var(--accent); opacity: 0.12; line-height: 1; position: absolute; right: 80px; top: 50px; }
+
+.metric { display: flex; flex-direction: column; gap: 4px; }
+.metric-value { font-family: var(--font-display); font-size: 36px; color: var(--accent); }
+.metric-label { font-size: 13px; color: var(--text-muted); }
+
+.arch-diagram { display: flex; flex-direction: column; gap: 14px; padding: 20px; }
+.arch-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.arch-box { padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; font-family: var(--font-mono); white-space: nowrap; }
+.arch-box.client { background: #5b8fd422; border: 1px solid #5b8fd444; color: var(--blue); }
+.arch-box.service { background: #6abf7b22; border: 1px solid #6abf7b44; color: var(--green); }
+.arch-box.storage { background: #d4a05322; border: 1px solid #d4a05344; color: var(--accent); }
+.arch-box.infra { background: #9b7bd422; border: 1px solid #9b7bd444; color: var(--purple); }
+.arch-box.ai { background: #d45b6e22; border: 1px solid #d45b6e44; color: var(--rose); }
+.arch-arrow { color: var(--text-muted); font-size: 16px; }
+.arch-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2px; }
+
+.notes { display: none; }
+body.show-notes .notes {
+  display: block; position: fixed; bottom: 16px; left: 24px; right: 24px;
+  background: #1a1a20ee; backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px 24px; font-size: 14px; line-height: 1.6;
+  color: var(--text-dim); z-index: 200; max-height: 150px; overflow-y: auto;
+}
+
+.grain {
+  position: fixed; inset: 0; opacity: 0.03; pointer-events: none; z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ── Career Path Diagram ── */
+.career-path {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  margin-top: 32px;
+}
+.career-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  position: relative;
+}
+.career-box.highlight { flex: 1.6; }
+.career-num {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 15px; font-weight: 500;
+  border: 2px solid var(--border); color: var(--text-muted);
+  background: var(--bg); z-index: 2; flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.career-box.highlight .career-num {
+  width: 44px; height: 44px; font-size: 17px;
+}
+.career-box:nth-child(7) .career-num,
+.career-box:nth-child(9) .career-num { /* CoAuth, AI boxes */
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-glow);
+  box-shadow: 0 0 20px var(--accent-dim);
+}
+.career-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+.career-box.highlight .career-card {
+  border-color: var(--accent-dim);
+  background: linear-gradient(180deg, var(--accent-glow) 0%, var(--surface) 100%);
+}
+.career-card-title {
+  font-size: 15px; font-weight: 500; color: var(--text);
+  line-height: 1.3;
+}
+.career-box.highlight .career-card-title { font-size: 17px; }
+.career-card-desc {
+  font-size: 12px; color: var(--text-muted); line-height: 1.5;
+}
+.career-box.highlight .career-card-desc { font-size: 13px; color: var(--text-dim); }
+.career-card-badge {
+  font-family: var(--font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--accent-dim); color: var(--accent);
+  align-self: center;
+}
+.career-connector {
+  display: flex; align-items: center; justify-content: center;
+  padding-top: 6px; flex-shrink: 0; width: 36px;
+}
+.career-connector svg { color: var(--text-muted); opacity: 0.5; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="slide-counter"><span id="current">1</span> / <span id="total"></span></div>
+<div class="key-hint">N notes &middot; &larr; &rarr; navigate</div>
+
+<div class="deck">
+
+<!-- ═══════════ SLIDE 1: TITLE ═══════════ -->
+<div class="slide title-slide">
+  <div class="stack gap-24">
+    <h3>Project Deep Dive</h3>
+    <div class="title-line"></div>
+    <h1>Leon Ye</h1>
+    <div style="height: 12px"></div>
+    <p class="title-meta">Principal Software Engineer &middot; Microsoft &middot; SharePoint Pages</p>
+    <p class="title-meta">10+ years building collaborative authoring systems &amp; AI-powered platforms</p>
+  </div>
+  <div class="notes">Brief intro. 10+ years at Microsoft, all on SharePoint Pages. Fudan University CS, ACM ICPC World Finals 27th place. Will walk through my career arc then deep dive into two major projects.</div>
+</div>
+
+<!-- ═══════════ SLIDE 2: CAREER PATH ═══════════ -->
+<div class="slide">
+  <div class="stack gap-16">
+    <div class="stack gap-8">
+      <h3>My Path</h3>
+      <h2>SharePoint Pages &mdash; A Decade of Evolution</h2>
+    </div>
+
+    <div class="career-path">
+      <div class="career-box">
+        <div class="career-num">1</div>
+        <div class="career-card">
+          <div class="career-card-title">Web Parts &amp; Accessibility</div>
+          <div class="career-card-desc">Delivered high-traffic SharePoint web parts end-to-end. Co-authored 9 React a11y TSLint rules, built ScreenReaderAlert for org-wide reuse.</div>
+        </div>
+      </div>
+
+      <div class="career-connector"><svg width="28" height="16" viewBox="0 0 28 16" fill="none"><path d="M2 8h20m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="career-box">
+        <div class="career-num">2</div>
+        <div class="career-card">
+          <div class="career-card-title">Authoring &amp; Performance</div>
+          <div class="career-card-desc">Shipped Undo/Redo (JSON diffing), Version History. Designed viewport loader improving p75 LCP/TTI. Built org-wide A/B experimentation infra.</div>
+        </div>
+      </div>
+
+      <div class="career-connector"><svg width="28" height="16" viewBox="0 0 28 16" fill="none"><path d="M2 8h20m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="career-box">
+        <div class="career-num">3</div>
+        <div class="career-card">
+          <div class="career-card-title">Canvas Architecture</div>
+          <div class="career-card-desc">Took ownership of the Page Canvas. Re-architected editing surface and section model that became the foundation for coauthoring.</div>
+        </div>
+      </div>
+
+      <div class="career-connector"><svg width="28" height="16" viewBox="0 0 28 16" fill="none"><path d="M2 8h20m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="career-box highlight">
+        <div class="career-num">4</div>
+        <div class="career-card">
+          <div class="career-card-badge">Deep Dive</div>
+          <div class="career-card-title">Real-time Coauthoring</div>
+          <div class="career-card-desc">Incubated from hackathon to production. Led 6 engineers, re-architected Pages data model with Fluid Framework DDS. 330K DAU / 2.6M MAU.</div>
+        </div>
+      </div>
+
+      <div class="career-connector"><svg width="28" height="16" viewBox="0 0 28 16" fill="none"><path d="M2 8h20m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="career-box highlight">
+        <div class="career-num">5</div>
+        <div class="career-card">
+          <div class="career-card-badge">Deep Dive</div>
+          <div class="career-card-title">AI-Powered Authoring</div>
+          <div class="career-card-desc">Architected AI Properties platform, launched Smart Sections (60K MAU), leading Vibe Authoring with content-oriented architecture.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-accent" style="margin-top: 12px;">
+      <p style="font-size: 15px;"><strong>Each phase built on the last.</strong> Web part expertise led to canvas ownership. Canvas architecture enabled coauthoring. Deep domain knowledge of the page model was essential for meaningful AI integration.</p>
+    </div>
+  </div>
+  <div class="notes">Walk through the boxes briefly. Spend maybe 30 seconds on boxes 1-3, then transition into the deep dives for 4 and 5.</div>
+</div>
+
+<!-- ═══════════ SLIDE 3: COAUTH — THE PROBLEM ═══════════ -->
+<div class="slide section-slide">
+  <div class="section-num">04</div>
+  <div class="stack gap-16">
+    <h3 style="color: var(--blue);">Real-time Coauthoring</h3>
+    <h1>From Zero Collaboration<br>to Real-time at Scale</h1>
+    <div class="title-line" style="background: var(--blue);"></div>
+    <p style="font-size: 20px; max-width: 620px; margin-top: 8px;">Incubated from a hackathon concept into a production real-time coauthoring system. Re-architected the SharePoint Pages data model to leverage Fluid Framework&rsquo;s Distributed Data Structures.</p>
+    <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Dec 2020 &ndash; Sep 2024 &middot; Senior Software Engineer &middot; Team of 6 &middot; 330K DAU / 2.6M MAU</p>
+    <div class="tags" style="margin-top: 16px;">
+      <span class="tag">Fluid Framework</span>
+      <span class="tag">Distributed Data Structures</span>
+      <span class="tag">SPO Partitions</span>
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">WebSockets</span>
+    </div>
+  </div>
+  <div class="notes">Set the scene. Pages was single-author only. Data loss on concurrent edits. Competitive gap vs Google Docs and Word Online. Customer escalations were driving urgency.</div>
+</div>
+
+<!-- ═══════════ SLIDE 4: COAUTH — ARCHITECTURE ═══════════ -->
+<div class="slide">
+  <div class="stack gap-24">
+    <div class="stack gap-8">
+      <h3 style="color: var(--blue);">Coauthoring</h3>
+      <h2>Architecture &amp; Key Design</h2>
+    </div>
+    <div class="split">
+      <div class="card" style="padding: 28px;">
+        <div class="arch-diagram">
+          <div class="arch-label">Client</div>
+          <div class="arch-row">
+            <div class="arch-box client">React Canvas</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box client">Section</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box client">Fluid DDS</div>
+          </div>
+          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
+          <div class="arch-label">Service</div>
+          <div class="arch-row">
+            <div class="arch-box service">Fluid Relay</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box service">Op Ordering</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box service">Push (WS)</div>
+          </div>
+          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
+          <div class="arch-label">Storage</div>
+          <div class="arch-row">
+            <div class="arch-box storage">SPO Partitions</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box storage">Summaries</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box storage">Op Log</div>
+          </div>
+        </div>
+      </div>
+      <div class="stack gap-16">
+        <div class="stack gap-8">
+          <p><strong>Re-architected Pages data model</strong> with migration strategy to leverage DDS (Distributed Data Structures) from Microsoft&rsquo;s Fluid Framework, based on total-order broadcast protocol.</p>
+          <p><strong>Defined Pages-specific storage and consistency model</strong> that intentionally diverged from standard Fluid Framework patterns to meet product-level performance and reliability constraints.</p>
+        </div>
+        <div class="card" style="border-color: #5b8fd433;">
+          <div class="stack gap-8">
+            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Cross-team negotiation</p>
+            <p style="font-size: 15px;">Pages had unique partitioning requirements that didn&rsquo;t fit Fluid&rsquo;s standard protocols or the storage team&rsquo;s model. Drove resolution through clear problem statements, proposed alternatives, and efficient cross-team communication.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap: 24px;">
+          <div class="metric"><div class="metric-value">330K</div><div class="metric-label">DAU</div></div>
+          <div class="metric"><div class="metric-value">2.6M</div><div class="metric-label">MAU</div></div>
+          <div class="metric"><div class="metric-value">6</div><div class="metric-label">engineers</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">Walk through the three layers. Emphasize the per-section container decision—this was the key architectural choice. Mention the Fluid team friction and how you resolved it.</div>
+</div>
+
+<!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
+<div class="slide">
+  <div class="stack gap-24">
+    <div class="stack gap-8">
+      <h3 style="color: var(--blue);">Coauthoring</h3>
+      <h2>Decisions, Mistakes &amp; Impact</h2>
+    </div>
+    <div class="split">
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Hackathon to production</p>
+          <p>Incubated the concept in a hackathon, built POC in 1 month. Initially resource-constrained, spent too much time on implementation details before setting up swimlanes.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Data loss &amp; reliability</p>
+          <p>Early rollout hit serious data loss issues from architectural changes (single-user to multi-user, new service dependencies, sync protocol). Treated every incident as Sev2, traced root causes across client/service/protocol. Added data-loss detection and automation to roadmap.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Unblocking partner teams</p>
+          <p>CoAuth rollout blocked by reliability issues from a partner team whose fixes weren&rsquo;t on their near-term roadmap. Drafted document outlining issue, user impact, and solutions. Offered direct team contribution. Unblocked within a week.</p>
+        </div>
+      </div>
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Mistake: late delegation</p>
+          <p>Held onto too much implementation. At peak, team grew to 7 engineers (mix of senior/junior). Once I broke work into swimlanes by skill &mdash; seniors on server-side APIs, juniors on client features (presence, discard, data loss dashboard) &mdash; things accelerated.</p>
+        </div>
+        <div class="card-accent stack gap-8">
+          <p style="font-size: 14px; font-weight: 500;">What I'd do differently</p>
+          <p>Set up clear swimlanes from the start. Focus on high-level architecture, let others drive implementation. Would have scaled me faster and grown the team at the same time.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Lesson</p>
+          <p>Quality and trust outweigh speed. Every data loss incident reinforced that. Delegation isn&rsquo;t just about reducing load &mdash; it&rsquo;s about enabling the team to scale faster and giving others growth opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">Be honest about the delegation mistake—shows self-awareness. The Fluid bet shows conviction. Leadership growth ties into the career progression story.</div>
+</div>
+
+<!-- ═══════════ SLIDE 6: AI AUTHORING — THE PROBLEM ═══════════ -->
+<div class="slide section-slide">
+  <div class="section-num">05</div>
+  <div class="stack gap-16">
+    <h3 style="color: var(--rose);">AI-Powered Authoring</h3>
+    <h1>Shipping Intelligent<br>Authoring at Speed</h1>
+    <div class="title-line" style="background: var(--rose);"></div>
+    <p style="font-size: 20px; max-width: 620px; margin-top: 8px;">Architected the AI Properties platform, launched Smart Sections (60K MAU), and now leading Vibe Authoring &mdash; bounded, context-aware AI content generation using content-oriented architecture.</p>
+    <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Sep 2024 &ndash; Present &middot; Principal Software Engineer</p>
+    <div class="tags" style="margin-top: 16px;">
+      <span class="tag">Copilot Stack</span>
+      <span class="tag">AI Agents</span>
+      <span class="tag">Prompt Engineering</span>
+      <span class="tag">BizChat / Sydney</span>
+      <span class="tag">AugLoop</span>
+      <span class="tag">EVAL</span>
+    </div>
+  </div>
+  <div class="notes">Different gear from coauthoring. Here the constraint was speed and uncertainty, not multi-year complexity. AI landscape was moving so fast the team worried about building things that'd be obsolete in months.</div>
+</div>
+
+<!-- ═══════════ SLIDE 7: AI — ARCHITECTURE ═══════════ -->
+<div class="slide">
+  <div class="stack gap-24">
+    <div class="stack gap-8">
+      <h3 style="color: var(--rose);">AI Authoring</h3>
+      <h2>Smart Sections &amp; Orchestration</h2>
+    </div>
+    <div class="split">
+      <div class="card" style="padding: 28px;">
+        <div class="arch-diagram">
+          <div class="arch-label">User</div>
+          <div class="arch-row">
+            <div class="arch-box client">Page Editor</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box client">Prompt UI</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box client">Preview / Accept</div>
+          </div>
+          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
+          <div class="arch-label">Orchestration</div>
+          <div class="arch-row">
+            <div class="arch-box ai">Context Assembly</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box ai">Prompt Eng.</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box ai">Parser</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box ai">Renderer</div>
+          </div>
+          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
+          <div class="arch-label">AI Services</div>
+          <div class="arch-row">
+            <div class="arch-box infra">Copilot</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box infra">AugLoop</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box infra">EVAL</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box infra">RAI</div>
+          </div>
+        </div>
+      </div>
+      <div class="stack gap-16">
+        <div class="stack gap-8">
+          <p><strong>AI Properties:</strong> Schema-driven platform enabling web part teams to define LLM-safe schemas. Converted unstructured SharePoint components into deterministic, structured representations. Reduced token usage by 30%, improved generation quality.</p>
+          <p><strong>Smart Sections (~60K MAU):</strong> 0&rarr;1 launch of LLM-powered authoring generating data-rich UI sections and pages, built on the AI Properties platform.</p>
+        </div>
+        <div class="card" style="border-color: #d45b6e44;">
+          <div class="stack gap-8">
+            <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Vibe Authoring</p>
+            <p style="font-size: 15px;">Content-oriented (vs. tool-oriented) architecture using Git-backed workspaces and in-memory file systems. Provides explicit state, versioning, and evaluation surfaces. Optimized agent orchestrator for controllability and iteration velocity in production.</p>
+          </div>
+        </div>
+        <div class="stack gap-8">
+          <p style="font-size: 14px; color: var(--text-muted); font-weight: 500;">Production AI authoring pipeline emitting JSON-schematized Pages content. Became backbone for multiple AI features and unblocked rapid adoption by cross-team partners.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">Walk through the three layers. Emphasize the scoping decision (Smart Sections vs full page). The ISection composability point shows good design thinking.</div>
+</div>
+
+<!-- ═══════════ SLIDE 8: AI — DECISIONS & LEARNINGS ═══════════ -->
+<div class="slide">
+  <div class="stack gap-24">
+    <div class="stack gap-8">
+      <h3 style="color: var(--rose);">AI Authoring</h3>
+      <h2>Decisions, Challenges &amp; Growth</h2>
+    </div>
+    <div class="split">
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Content-first vs. tool-oriented</p>
+          <p>Initial plan was tool-oriented orchestration via agent platform. Partner team was developing content-first approach. Built a POC using content-first, achieved MVP without building custom tools. Concrete demo convinced management to pivot.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Smart Sections prototype</p>
+          <p>Short timeline to validate AI value to customers. Built on two tracks: improved infrastructure + LLM integration. Partnered with senior engineer for vertical slice demo. Infrastructure challenge: existing system couldn&rsquo;t generate SharePoint web parts. Delivered prototype, built confidence across leadership.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Rapid AI learning</p>
+          <p>Dove into AI frontier through parallel channels: external research &amp; open papers, internal Microsoft Copilot architectures, hands-on AI tools in own workflow. Ramped within months.</p>
+        </div>
+      </div>
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Ambiguity in Vibe Authoring</p>
+          <p>Project began with unclear goal &mdash; &ldquo;like Word&rdquo; or &ldquo;like GitHub Copilot&rdquo;? No clear boundaries, metrics, or architecture. Defined content-oriented architecture, Git-backed workspaces, and evaluation surfaces to bring clarity.</p>
+        </div>
+        <div class="card-accent stack gap-8">
+          <p style="font-size: 14px; font-weight: 500;">AI Properties impact</p>
+          <p>Org-wide schema-driven platform. Reduced token usage by 30%, improved generation quality/performance, reduced model confusion. Became the foundation that unblocked multiple teams.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Evolution from CoAuth</p>
+          <p>CoAuth taught me to delegate and prioritize reliability. AI Authoring taught me to navigate ambiguity and move fast. Applied swimlane lesson from day one. Together they show I can operate in both multi-year infrastructure and fast-cycle AI spaces.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">Show the contrast: coauthoring was slow and deep, AI was fast and uncertain. You adapted your approach. The evolution point ties both projects together.</div>
+</div>
+
+<!-- ═══════════ SLIDE 9: CLOSING ═══════════ -->
+<div class="slide title-slide">
+  <div class="stack gap-24">
+    <h3>Thank You</h3>
+    <div class="title-line"></div>
+    <h1>Questions &amp;<br>Discussion</h1>
+    <div style="height: 24px"></div>
+    <p class="title-meta">Leon Ye &middot; Principal Software Engineer &middot; Microsoft</p>
+  </div>
+  <div class="notes">Open for questions. Backup details: Fluid internals, data loss incidents, Sev2 response process, perf experimentation infra, AI Properties schema design, Vibe Authoring architecture, Playwright migration, a11y work.</div>
+</div>
+
+</div><!-- /deck -->
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+const currentEl = document.getElementById('current');
+const totalEl = document.getElementById('total');
+let idx = 0;
+totalEl.textContent = slides.length;
+
+function show(newIdx, direction = 1) {
+  if (newIdx < 0 || newIdx >= slides.length) return;
+  const prev = slides[idx];
+  const next = slides[newIdx];
+  prev.classList.remove('active');
+  prev.classList.add('exiting');
+  setTimeout(() => prev.classList.remove('exiting'), 500);
+  next.style.transform = direction > 0 ? 'translateX(40px)' : 'translateX(-40px)';
+  requestAnimationFrame(() => { next.classList.add('active'); });
+  idx = newIdx;
+  currentEl.textContent = idx + 1;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(idx + 1, 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - 1, -1); }
+  if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('show-notes');
+  if (e.key === 'Home') { e.preventDefault(); show(0, -1); }
+  if (e.key === 'End') { e.preventDefault(); show(slides.length - 1, 1); }
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) diff > 0 ? show(idx + 1, 1) : show(idx - 1, -1);
+});
+
+slides[0].classList.add('active');
+</script>
+</body>
+</html>
