@@ -304,36 +304,45 @@ body.show-notes .notes {
       <h2>Three Teams, One Protocol</h2>
     </div>
     <div class="split">
-      <div class="stack gap-16" style="justify-content: center;">
-        <!-- Triangle diagram -->
-        <div style="position:relative; width:100%; aspect-ratio:1.2; max-height: 46vh;">
-          <!-- Top node: Pages (our team) -->
-          <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); text-align:center;">
-            <div class="arch-box client" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">SharePoint Pages</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Our team &mdash; the app</div>
+      <div class="stack gap-12" style="justify-content: center;">
+        <!-- Nested box diagram -->
+        <!-- Pages App (outer box) -->
+        <div style="border: 2px solid #5b8fd466; border-radius: 14px; padding: 16px; background: #5b8fd40a; position: relative;">
+          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--blue); font-weight:500;">Pages App (our team)</div>
+          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+            <div class="arch-box client">Pages Data Model</div>
+            <span class="arch-arrow">&harr;</span>
+            <!-- Fluid Container (nested box) -->
+            <div style="border: 1.5px solid #9b7bd444; border-radius: 10px; padding: 12px 14px; background: #9b7bd40a; position: relative; flex: 1;">
+              <div style="position:absolute; top:-10px; left:12px; background:var(--bg); padding: 0 6px; font-family:var(--font-mono); font-size: clamp(10px, 0.8vw, 12px); color: var(--purple);">Fluid Container</div>
+              <div style="display:flex; align-items:center; gap: 8px; margin-top: 2px; flex-wrap: wrap;">
+                <div class="arch-box infra">SharedTree DDS</div>
+                <div class="arch-box infra">Presence</div>
+              </div>
+            </div>
           </div>
-          <!-- Bottom-left: Fluid Framework -->
-          <div style="position:absolute; bottom:0; left:0; text-align:center;">
-            <div class="arch-box infra" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">Fluid Framework</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Protocol &amp; client SDK</div>
+        </div>
+        <!-- Arrow down -->
+        <div style="text-align:center; color: var(--text-muted); font-size: 18px; line-height:1;">&darr; Fluid Protocol (Total Order Broadcast) &darr;</div>
+        <!-- Fluid Framework (middle box) -->
+        <div style="border: 2px solid #9b7bd444; border-radius: 14px; padding: 16px; background: #9b7bd40a; position: relative;">
+          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--purple); font-weight:500;">Fluid Framework (FF team)</div>
+          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+            <div class="arch-box infra">Client SDK</div>
+            <div class="arch-box infra">Schema &amp; Hydration</div>
+            <div class="arch-box infra">Merge Semantics</div>
           </div>
-          <!-- Bottom-right: ODSP Services -->
-          <div style="position:absolute; bottom:0; right:0; text-align:center;">
-            <div class="arch-box service" style="padding: 14px 24px; font-size: 15px; border-width: 2px;">ODSP Services</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Storage, sequencing, push</div>
+        </div>
+        <!-- Arrow down -->
+        <div style="text-align:center; color: var(--text-muted); font-size: 18px; line-height:1;">&darr; Protocol Contract &darr;</div>
+        <!-- ODSP Services (bottom box) -->
+        <div style="border: 2px solid #6abf7b44; border-radius: 14px; padding: 16px; background: #6abf7b0a; position: relative;">
+          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--green); font-weight:500;">ODSP Services (service team)</div>
+          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+            <div class="arch-box service">OpStream (Storage)</div>
+            <div class="arch-box service">Push (Sequencing)</div>
+            <div class="arch-box service">Push (Broadcast)</div>
           </div>
-          <!-- SVG lines connecting the three -->
-          <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 400 340">
-            <!-- Pages to Fluid Framework -->
-            <line x1="160" y1="55" x2="85" y2="260" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
-            <text x="80" y="162" fill="#5b8fd4" font-size="11" font-family="IBM Plex Mono, monospace" transform="rotate(-60, 80, 162)">DDS + SharedTree</text>
-            <!-- Pages to ODSP -->
-            <line x1="240" y1="55" x2="315" y2="260" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
-            <text x="310" y="162" fill="#6abf7b" font-size="11" font-family="IBM Plex Mono, monospace" transform="rotate(60, 310, 162)">AFP + OpStream</text>
-            <!-- Fluid to ODSP -->
-            <line x1="120" y1="290" x2="280" y2="290" stroke="#9b7bd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
-            <text x="200" y="315" fill="#9b7bd4" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">Protocol contract</text>
-          </svg>
         </div>
       </div>
       <div class="stack gap-16">
