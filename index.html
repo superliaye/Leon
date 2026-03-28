@@ -349,126 +349,90 @@ body.show-notes .notes {
 </div>
 
 <!-- ═══════════ SLIDE 4: COAUTH — ARCHITECTURE ═══════════ -->
-<div class="slide">
-  <div class="stack gap-24">
+<div class="slide" style="gap: clamp(12px, 1.5vh, 20px);">
     <div class="stack gap-8">
       <h3 style="color: var(--blue);">Real-time Collaborative Authoring for SharePoint Pages</h3>
       <h2>Three Teams, One Protocol</h2>
     </div>
-    <div class="split wide-right">
-      <!-- LEFT: cross-team explanation (compact) -->
-      <div class="stack gap-12">
-        <div class="card stack gap-6" style="border-color: #9b7bd433; padding: clamp(12px, 1.2vw, 20px);">
-          <p style="font-size: clamp(15px, 1.3vw, 20px); color: var(--purple); font-weight: 600;">Fluid Framework Team</p>
-          <p>Defines the protocol &mdash; total-order broadcast. Owns the client SDK, SharedTree DDS, and merge semantics.</p>
-        </div>
-        <div class="card stack gap-6" style="border-color: #6abf7b33; padding: clamp(12px, 1.2vw, 20px);">
-          <p style="font-size: clamp(15px, 1.3vw, 20px); color: var(--green); font-weight: 600;">Fluid APIs Team</p>
-          <p>Storage service for Fluid data &mdash; persists operations and snapshots reliably.</p>
-        </div>
-        <div class="card stack gap-6" style="border-color: #d4a05333; padding: clamp(12px, 1.2vw, 20px);">
-          <p style="font-size: clamp(15px, 1.3vw, 20px); color: var(--accent); font-weight: 600;">Push Service Team</p>
-          <p>WebSocket service for operation sequencing and real-time broadcasting to all clients.</p>
-        </div>
-        <div class="card-accent stack gap-6" style="padding: clamp(12px, 1.2vw, 20px);">
-          <p style="font-size: clamp(15px, 1.3vw, 20px); font-weight: 600; color: var(--blue);">Our Role (Pages App)</p>
-          <p>Build the app integrating all three. Drove cross-team alignment on a non-standard storage model to ship coauthoring.</p>
-        </div>
-        <div style="display:flex; gap: 24px;">
-          <div class="metric"><div class="metric-value">330K</div><div class="metric-label">DAU</div></div>
-          <div class="metric"><div class="metric-value">2.6M</div><div class="metric-label">MAU</div></div>
-          <div class="metric"><div class="metric-value">6&ndash;8</div><div class="metric-label">engineers</div></div>
-        </div>
-      </div>
-      <!-- RIGHT: Overlapping diagram using CSS grid -->
-      <div style="display:grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 0; align-self: center;">
-
-        <!-- Pages App outer box -->
-        <div style="grid-column: 1 / -1; border: 2px solid #5b8fd455; border-radius: 16px; background: #5b8fd406;
-          padding: clamp(36px, 3.5vw, 52px) clamp(16px, 1.5vw, 28px) clamp(16px, 1.5vw, 28px); position: relative;">
-          <div style="position:absolute; top: clamp(10px, 1vh, 16px); left: clamp(16px, 1.5vw, 26px);
-            font-family:var(--font-mono); font-size: clamp(15px, 1.3vw, 21px); color: #7eaee6; font-weight: 600;">Pages App</div>
-
-          <div style="display: flex; align-items: stretch; gap: 0;">
-
-            <!-- Rendering Layer -->
-            <div style="border: 1.5px solid var(--border); border-radius: 12px; background: var(--surface);
-              padding: clamp(32px, 3vw, 46px) clamp(14px, 1.2vw, 22px) clamp(14px, 1.2vw, 22px); position: relative;
-              flex: 0 0 clamp(140px, 14vw, 220px);">
-              <div style="position:absolute; top: clamp(10px, 0.8vh, 14px); left: clamp(12px, 1vw, 18px);
-                font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: var(--text); font-weight: 500;">Rendering Layer</div>
-
-              <!-- Row 1: Presence → arrow → Ephemeral -->
-              <div style="display:flex; align-items:center; gap: 0; margin-bottom: clamp(10px, 1vw, 18px);">
-                <div class="sys-chip blue" style="flex: 1; justify-content:center; display:flex;">Presence</div>
-                <div style="flex: 0 0 clamp(36px, 4vw, 60px); display:flex; align-items:center; justify-content:center;">
-                  <svg viewBox="0 0 50 16" style="width:100%; height: 16px;">
-                    <defs><marker id="al" markerWidth="6" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M6,0 L0,2.5 L6,5" fill="#7eaee6"/></marker>
-                    <marker id="ar" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5" fill="#9b7bd4"/></marker></defs>
-                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8fd4" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Row 2: Pages Data → arrow → SharedTree -->
-              <div style="display:flex; align-items:center; gap: 0;">
-                <div class="sys-chip blue" style="flex: 1; justify-content:center; display:flex;">Pages Data Structure</div>
-                <div style="flex: 0 0 clamp(36px, 4vw, 60px); display:flex; align-items:center; justify-content:center;">
-                  <svg viewBox="0 0 50 16" style="width:100%; height: 16px;">
-                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8fd4" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <!-- Fluid Framework — extends below Pages App -->
-            <div style="border: 2px solid #9b7bd433; border-radius: 0 14px 14px 14px; background: #9b7bd406;
-              padding: clamp(32px, 3vw, 46px) clamp(14px, 1.2vw, 22px) clamp(14px, 1.2vw, 22px); position: relative;
-              flex: 1; margin-bottom: clamp(-70px, -7vw, -110px); margin-left: -2px;">
-              <div style="position:absolute; top: clamp(10px, 0.8vh, 14px); left: clamp(12px, 1vw, 18px);
-                font-family:var(--font-mono); font-size: clamp(14px, 1.2vw, 19px); color: #b99de6; font-weight: 600;">Fluid Framework</div>
-
-              <div style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #b99de6; font-weight: 500; margin-bottom: clamp(8px, 0.7vw, 14px);">Fluid Integration</div>
-
-              <!-- Row 1: Ephemeral + Observability -->
-              <div style="display:flex; gap: clamp(8px, 0.8vw, 14px); margin-bottom: clamp(10px, 1vw, 18px);">
-                <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Ephemeral Notification</div>
-                <div class="sys-chip purple" style="flex:1; justify-content:center; display:flex;">Observability</div>
-              </div>
-              <!-- Row 2: SharedTree -->
-              <div class="sys-chip purple" style="width:100%; justify-content:center; display:flex; margin-bottom: clamp(20px, 2vw, 32px);">SharedTree Distributed Data Structure (DDS)</div>
-
-              <!-- Separator -->
-              <div style="border-top: 1.5px dashed #9b7bd433; margin: 0 0 clamp(12px, 1.2vw, 20px); padding-top: clamp(10px, 1vw, 16px);">
-                <div style="text-align: center; font-family: var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: #b99de6; margin-bottom: clamp(10px, 1vw, 16px);">Protocol Services</div>
-              </div>
-
-              <!-- Fluid APIs + Push Service -->
-              <div style="display: flex; gap: clamp(12px, 1.2vw, 22px); align-items: stretch;">
-                <div style="border: 1.5px solid #6abf7b44; border-radius: 12px; background: #6abf7b08;
-                  padding: clamp(12px, 1.2vw, 20px); flex: 1;">
-                  <div style="font-family:var(--font-mono); font-size: clamp(13px, 1.1vw, 18px); color: var(--green); font-weight: 600; margin-bottom: 4px;">Fluid APIs</div>
-                  <div style="font-size: clamp(12px, 0.95vw, 15px); color: var(--text-dim);">Ops &amp; snapshot storage</div>
-                </div>
-                <div style="display:flex; align-items:center;">
-                  <svg viewBox="0 0 50 16" style="width: clamp(30px, 3vw, 50px); height: 16px;">
-                    <line x1="4" y1="8" x2="46" y2="8" stroke="#8a8890" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)"/>
-                  </svg>
-                </div>
-                <div style="border: 1.5px solid #d4a05344; border-radius: 12px; background: #d4a05308;
-                  padding: clamp(12px, 1.2vw, 20px); flex: 1;">
-                  <div style="font-family:var(--font-mono); font-size: clamp(13px, 1.1vw, 18px); color: var(--accent); font-weight: 600; margin-bottom: 4px;">Push Service</div>
-                  <div style="font-size: clamp(12px, 0.95vw, 15px); color: var(--text-dim);">Sequencing &amp; broadcast</div>
-                </div>
-              </div>
-            </div><!-- /Fluid Framework -->
-
-          </div>
-        </div><!-- /Pages App -->
-
+    <!-- Team legend: compact horizontal row -->
+    <div style="display: flex; gap: clamp(10px, 1vw, 18px); flex-wrap: wrap; align-items: center;">
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#e07888;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #e07888; font-weight:500;">Pages App</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; our team</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#7eaee6;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #7eaee6; font-weight:500;">Fluid Framework</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; protocol &amp; SDK</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#6abf7b;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #6abf7b; font-weight:500;">Fluid APIs</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; storage</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: var(--accent); font-weight:500;">Push Service</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; sequencing &amp; broadcast</span></div>
+      <div style="margin-left: auto; display:flex; gap: 20px;">
+        <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">330K</div><div class="metric-label">DAU</div></div>
+        <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">2.6M</div><div class="metric-label">MAU</div></div>
       </div>
     </div>
-  </div>
+    <!-- Full-width SVG diagram -->
+    <div style="flex: 1; min-height: 0;">
+          <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="al" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#8a8fd4"/></marker>
+              <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8a8fd4"/></marker>
+            </defs>
+
+            <!-- Pages App — red box -->
+            <rect x="10" y="10" width="560" height="310" rx="14" fill="#d45b6e08" stroke="#e07888" stroke-width="2"/>
+            <text x="30" y="40" fill="#e07888" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Pages App</text>
+
+            <!-- Fluid Framework — blue box, overlapping -->
+            <rect x="320" y="10" width="670" height="580" rx="14" fill="#5b8fd408" stroke="#7eaee6" stroke-width="2"/>
+            <text x="340" y="40" fill="#7eaee6" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Fluid Framework</text>
+
+            <!-- Rendering Layer box -->
+            <rect x="30" y="65" width="260" height="230" rx="10" fill="#151518" stroke="#2a2a32" stroke-width="1.5"/>
+            <text x="50" y="90" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500">Rendering Layer</text>
+
+            <!-- Presence chip -->
+            <rect x="50" y="110" width="220" height="42" rx="10" fill="#5b8fd418" stroke="#5b8fd444" stroke-width="1.5"/>
+            <text x="160" y="137" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" text-anchor="middle">Presence</text>
+
+            <!-- Pages Data Structure chip -->
+            <rect x="50" y="175" width="220" height="42" rx="10" fill="#5b8fd418" stroke="#5b8fd444" stroke-width="1.5"/>
+            <text x="160" y="202" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" text-anchor="middle">Pages Data Structure</text>
+
+            <!-- Fluid Integration — green box in overlap -->
+            <rect x="360" y="65" width="600" height="230" rx="10" fill="#6abf7b0a" stroke="#6abf7b" stroke-width="1.5"/>
+            <text x="380" y="90" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500">Fluid Integration</text>
+
+            <!-- Ephemeral Notification chip -->
+            <rect x="380" y="110" width="260" height="42" rx="10" fill="#9b7bd418" stroke="#9b7bd444" stroke-width="1.5"/>
+            <text x="510" y="137" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" text-anchor="middle">Ephemeral Notification</text>
+
+            <!-- Observability chip -->
+            <rect x="660" y="110" width="270" height="42" rx="10" fill="#9b7bd418" stroke="#9b7bd444" stroke-width="1.5"/>
+            <text x="795" y="137" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" text-anchor="middle">Observability</text>
+
+            <!-- SharedTree DDS chip -->
+            <rect x="380" y="175" width="550" height="42" rx="10" fill="#9b7bd418" stroke="#9b7bd444" stroke-width="1.5"/>
+            <text x="655" y="202" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" text-anchor="middle">SharedTree Distributed Data Structure (DDS)</text>
+
+            <!-- Presence ↔ Ephemeral arrows -->
+            <line x1="275" y1="131" x2="375" y2="131" stroke="#8a8fd4" stroke-width="2.5" marker-start="url(#al)" marker-end="url(#ar)"/>
+
+            <!-- Pages Data ↔ SharedTree arrows -->
+            <line x1="275" y1="196" x2="375" y2="196" stroke="#8a8fd4" stroke-width="2.5" marker-start="url(#al)" marker-end="url(#ar)"/>
+
+            <!-- Fluid APIs box -->
+            <rect x="350" y="400" width="240" height="120" rx="14" fill="#6abf7b0a" stroke="#6abf7b88" stroke-width="1.5"/>
+            <text x="380" y="435" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600">Fluid APIs</text>
+            <text x="380" y="460" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13">Ops &amp; snapshot storage</text>
+
+            <!-- Push Service box -->
+            <rect x="700" y="400" width="240" height="120" rx="14" fill="#d4a0530a" stroke="#d4a05388" stroke-width="1.5"/>
+            <text x="730" y="435" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600">Push Service</text>
+            <text x="730" y="460" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13">Sequencing &amp; broadcast</text>
+
+            <!-- Triangle: Fluid Integration → Fluid APIs -->
+            <line x1="520" y1="300" x2="460" y2="395" stroke="#e8e6e1" stroke-width="2" opacity="0.35"/>
+            <!-- Triangle: Fluid Integration → Push -->
+            <line x1="680" y1="300" x2="760" y2="395" stroke="#e8e6e1" stroke-width="2" opacity="0.35"/>
+            <!-- Fluid APIs ↔ Push Service -->
+            <line x1="595" y1="460" x2="695" y2="460" stroke="#e8e6e1" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)" opacity="0.35"/>
+          </svg>
+    </div>
   <div class="notes">Left side: explain each team's role. Fluid Framework defines the protocol (total-order broadcast). Fluid APIs (ODSP) stores operations and snapshots. Push handles sequencing and WebSocket broadcasting. Our team builds the app integrating all three. The diagram shows the three services as interconnected nodes all operating within the Fluid Framework protocol boundary. Key talking point: Pages couldn't use the standard storage model (.fluid files) — we store in AFP of .aspx pages, which required negotiating a new contract with the Fluid APIs and Push teams.</div>
 </div>
 
