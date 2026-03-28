@@ -187,6 +187,57 @@ body.show-notes .notes {
   padding-top: 6px; flex-shrink: 0; width: 36px;
 }
 .career-connector svg { color: var(--text-muted); opacity: 0.5; }
+
+/* ── System Diagram (Slide 4) ── */
+.sys-layer {
+  border-radius: 14px;
+  padding: clamp(14px, 1.6vw, 24px);
+  position: relative;
+}
+.sys-layer-label {
+  position: absolute; top: -11px; left: 18px;
+  background: var(--bg); padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 600; letter-spacing: 0.02em;
+}
+.sys-layer-sub {
+  font-size: clamp(11px, 0.85vw, 13px);
+  color: var(--text-muted); font-weight: 400;
+  margin-left: 6px;
+}
+.sys-chips {
+  display: flex; align-items: center; gap: clamp(8px, 0.8vw, 14px);
+  margin-top: 10px; flex-wrap: wrap;
+}
+.sys-chip {
+  padding: clamp(8px, 0.9vw, 14px) clamp(14px, 1.4vw, 22px);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.05vw, 16px);
+  font-weight: 500; white-space: nowrap;
+}
+.sys-chip.blue { background: #5b8fd418; border: 1.5px solid #5b8fd444; color: var(--blue); }
+.sys-chip.purple { background: #9b7bd418; border: 1.5px solid #9b7bd444; color: var(--purple); }
+.sys-chip.green { background: #6abf7b18; border: 1.5px solid #6abf7b44; color: var(--green); }
+.sys-nested {
+  border: 1.5px solid #9b7bd433; border-radius: 10px;
+  padding: clamp(10px, 1vw, 16px) clamp(12px, 1.2vw, 18px);
+  background: #9b7bd408; position: relative;
+}
+.sys-nested-label {
+  position: absolute; top: -9px; left: 14px;
+  background: var(--bg); padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 0.8vw, 12px);
+  color: var(--purple); font-weight: 500;
+}
+.sys-arrow {
+  text-align: center; padding: clamp(4px, 0.5vh, 8px) 0;
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 0.95vw, 15px);
+  color: var(--text-muted); letter-spacing: 0.04em;
+}
 </style>
 </head>
 <body>
@@ -305,56 +356,58 @@ body.show-notes .notes {
     </div>
     <div class="split">
       <div class="stack gap-12" style="justify-content: center;">
-        <!-- Nested box diagram -->
-        <!-- Pages App (outer box) -->
-        <div style="border: 2px solid #5b8fd466; border-radius: 14px; padding: 16px; background: #5b8fd40a; position: relative;">
-          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--blue); font-weight:500;">Pages App (our team)</div>
-          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
-            <div class="arch-box client">Pages Data Model</div>
-            <span class="arch-arrow">&harr;</span>
-            <!-- Fluid Container (nested box) -->
-            <div style="border: 1.5px solid #9b7bd444; border-radius: 10px; padding: 12px 14px; background: #9b7bd40a; position: relative; flex: 1;">
-              <div style="position:absolute; top:-10px; left:12px; background:var(--bg); padding: 0 6px; font-family:var(--font-mono); font-size: clamp(10px, 0.8vw, 12px); color: var(--purple);">Fluid Container</div>
-              <div style="display:flex; align-items:center; gap: 8px; margin-top: 2px; flex-wrap: wrap;">
-                <div class="arch-box infra">SharedTree DDS</div>
-                <div class="arch-box infra">Presence</div>
+
+        <!-- Layer 1: Pages App -->
+        <div class="sys-layer" style="border: 2px solid #5b8fd455; background: #5b8fd40c;">
+          <div class="sys-layer-label" style="color: var(--blue);">Pages App<span class="sys-layer-sub">our team</span></div>
+          <div class="sys-chips">
+            <div class="sys-chip blue">Pages Data Model</div>
+            <span style="color: var(--text-muted);">&harr;</span>
+            <div class="sys-nested">
+              <div class="sys-nested-label">Fluid Container</div>
+              <div class="sys-chips" style="margin-top: 4px;">
+                <div class="sys-chip purple">SharedTree DDS</div>
+                <div class="sys-chip purple">Presence</div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Arrow down -->
-        <div style="text-align:center; color: var(--text-muted); font-size: 18px; line-height:1;">&darr; Fluid Protocol (Total Order Broadcast) &darr;</div>
-        <!-- Fluid Framework (middle box) -->
-        <div style="border: 2px solid #9b7bd444; border-radius: 14px; padding: 16px; background: #9b7bd40a; position: relative;">
-          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--purple); font-weight:500;">Fluid Framework (FF team)</div>
-          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
-            <div class="arch-box infra">Client SDK</div>
-            <div class="arch-box infra">Schema &amp; Hydration</div>
-            <div class="arch-box infra">Merge Semantics</div>
+
+        <div class="sys-arrow">&darr;&ensp;Fluid Protocol (Total Order Broadcast)&ensp;&darr;</div>
+
+        <!-- Layer 2: Fluid Framework -->
+        <div class="sys-layer" style="border: 2px solid #9b7bd444; background: #9b7bd40c;">
+          <div class="sys-layer-label" style="color: var(--purple);">Fluid Framework<span class="sys-layer-sub">FF team</span></div>
+          <div class="sys-chips">
+            <div class="sys-chip purple">Client SDK</div>
+            <div class="sys-chip purple">Schema &amp; Merge</div>
+            <div class="sys-chip purple">Hydration</div>
           </div>
         </div>
-        <!-- Arrow down -->
-        <div style="text-align:center; color: var(--text-muted); font-size: 18px; line-height:1;">&darr; Protocol Contract &darr;</div>
-        <!-- ODSP Services (bottom box) -->
-        <div style="border: 2px solid #6abf7b44; border-radius: 14px; padding: 16px; background: #6abf7b0a; position: relative;">
-          <div style="position:absolute; top:-11px; left:16px; background:var(--bg); padding: 0 8px; font-family:var(--font-mono); font-size: clamp(11px, 0.9vw, 14px); color: var(--green); font-weight:500;">ODSP Services (service team)</div>
-          <div style="display:flex; align-items:center; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
-            <div class="arch-box service">OpStream (Storage)</div>
-            <div class="arch-box service">Push (Sequencing)</div>
-            <div class="arch-box service">Push (Broadcast)</div>
+
+        <div class="sys-arrow">&darr;&ensp;Protocol Contract&ensp;&darr;</div>
+
+        <!-- Layer 3: ODSP Services -->
+        <div class="sys-layer" style="border: 2px solid #6abf7b44; background: #6abf7b0c;">
+          <div class="sys-layer-label" style="color: var(--green);">ODSP Services<span class="sys-layer-sub">service team</span></div>
+          <div class="sys-chips">
+            <div class="sys-chip green">OpStream</div>
+            <div class="sys-chip green">Push (Seq)</div>
+            <div class="sys-chip green">Push (Broadcast)</div>
           </div>
         </div>
+
       </div>
       <div class="stack gap-16">
         <div class="stack gap-8">
           <p><strong>Fluid Framework</strong> defines the real-time collaboration protocol (total-order broadcast). We integrate its client SDK and SharedTree DDS into the Pages editing surface.</p>
           <p><strong>ODSP Services</strong> (separate team) provide the server-side infrastructure: storage (OpStream), operation sequencing, and WebSocket broadcasting (Push).</p>
-          <p><strong>Our role:</strong> Build the app layer and negotiate between both teams. Pages had unique requirements that didn&rsquo;t fit either team&rsquo;s standard model &mdash; we drove the architectural decisions across all three.</p>
+          <p><strong>Our role:</strong> Build the app layer and navigate between both teams. Pages had unique requirements that didn&rsquo;t fit either team&rsquo;s standard model &mdash; we drove the architectural decisions across all three.</p>
         </div>
         <div class="card" style="border-color: #5b8fd433;">
           <div class="stack gap-8">
             <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Why this was hard</p>
-            <p style="font-size: 15px;">Loop and Whiteboard use Fluid&rsquo;s standard storage model. Pages stores data differently (.aspx list items + AFP), so we couldn&rsquo;t just follow the playbook. Required cross-team alignment on a new storage contract.</p>
+            <p style="font-size: 15px;">Loop and Whiteboard use Fluid&rsquo;s standard storage model (.fluid files). Pages stores data differently (.aspx list items + Alternative File Partition), so we couldn&rsquo;t follow the playbook. Required cross-team alignment on a new storage contract.</p>
           </div>
         </div>
         <div style="display:flex; gap: 24px;">
@@ -365,7 +418,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">The triangle is the key visual. Fluid Framework team defines the protocol and SDK. ODSP team provides the server infrastructure. We're the app team integrating both — but Pages has unique storage needs (AFP in .aspx files, not .fluid files like Loop/Whiteboard). This meant we couldn't just follow the standard integration path. We had to negotiate architectural decisions with both teams simultaneously.</div>
+  <div class="notes">The 3-layer diagram is the key visual. Pages App sits on top, integrating Fluid Framework's client SDK (SharedTree DDS for tree-structured page data, Presence for cursor/user awareness). Fluid Framework team owns the protocol and merge semantics. ODSP Services team provides storage (OpStream) and real-time communication (Push). The challenge: Pages couldn't use Fluid's standard storage model — needed AFP in .aspx files, not .fluid files like Loop/Whiteboard. We drove cross-team alignment.</div>
 </div>
 
 <!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
