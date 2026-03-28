@@ -304,7 +304,7 @@ body.show-notes .notes {
         <div class="career-card">
           <div class="career-card-badge">Deep Dive</div>
           <div class="career-card-title">Real-time Coauthoring</div>
-          <div class="career-card-desc">Incubated from hackathon to production. Led 6 engineers, re-architected Pages data model with Fluid Framework DDS. 330K DAU / 2.6M MAU.</div>
+          <div class="career-card-desc">Incubated from hackathon to production. Led 6&ndash;8 engineers, re-architected Pages data model with Fluid Framework Distributed Data Structures. 330K DAU / 2.6M MAU.</div>
         </div>
       </div>
 
@@ -331,14 +331,14 @@ body.show-notes .notes {
 <div class="slide section-slide">
   <div class="section-num">04</div>
   <div class="stack gap-16">
-    <h3 style="color: var(--blue);">Real-time Coauthoring</h3>
+    <h3 style="color: var(--blue);">Real-time Collaborative Authoring for SharePoint Pages</h3>
     <h1>From Zero Collaboration<br>to Real-time at Scale</h1>
     <div class="title-line" style="background: var(--blue);"></div>
-    <p style="font-size: 20px; max-width: 680px; margin-top: 8px;">Incubated from a hackathon into a production real-time coauthoring system built on Fluid Framework&rsquo;s total-order broadcast protocol. Designed a dual-storage architecture (list item columns + Alternative File Partition) and migrated Pages to SharedTree DDS.</p>
-    <p style="font-size: 18px; max-width: 680px; margin-top: 8px; color: var(--text-dim);">Dec 2020 &ndash; Sep 2024 &middot; Senior Software Engineer &middot; Team of 6 &middot; 330K DAU / 2.6M MAU</p>
+    <p style="font-size: 20px; max-width: 680px; margin-top: 8px;">Incubated from a hackathon into a production real-time coauthoring system built on Fluid Framework&rsquo;s total-order broadcast protocol. Designed a dual-storage architecture (list item columns + Alternative File Partition) and migrated Pages to SharedTree &mdash; a Distributed Data Structure (DDS) designed for tree-like hierarchical data.</p>
+    <p style="font-size: 18px; max-width: 680px; margin-top: 8px; color: var(--text-dim);">Dec 2020 &ndash; Sep 2024 &middot; Senior Software Engineer &middot; Team of 6&ndash;8 &middot; 330K DAU / 2.6M MAU</p>
     <div class="tags" style="margin-top: 16px;">
       <span class="tag">Fluid Framework</span>
-      <span class="tag">SharedTree DDS</span>
+      <span class="tag">SharedTree (Distributed Data Structure)</span>
       <span class="tag">Total Order Broadcast</span>
       <span class="tag">React</span>
       <span class="tag">TypeScript</span>
@@ -351,7 +351,7 @@ body.show-notes .notes {
 <div class="slide">
   <div class="stack gap-24">
     <div class="stack gap-8">
-      <h3 style="color: var(--blue);">Coauthoring</h3>
+      <h3 style="color: var(--blue);">Real-time Collaborative Authoring for SharePoint Pages</h3>
       <h2>Three Teams, One Protocol</h2>
     </div>
     <div class="split">
@@ -359,26 +359,26 @@ body.show-notes .notes {
       <div class="stack gap-16">
         <div class="stack gap-12">
           <div class="card stack gap-8" style="border-color: #9b7bd433;">
-            <p style="font-size: 14px; color: var(--purple); font-weight: 500;">Fluid Framework Team</p>
-            <p>Defines the real-time collaboration protocol &mdash; total-order broadcast guaranteeing all clients see the same operations in the same order. Owns the client SDK, SharedTree DDS, and merge semantics.</p>
+            <p style="font-size: clamp(16px, 1.4vw, 22px); color: var(--purple); font-weight: 600;">Fluid Framework Team</p>
+            <p>Defines the real-time collaboration protocol &mdash; total-order broadcast guaranteeing all clients see the same operations in the same order. Owns the client SDK, SharedTree (Distributed Data Structure), and merge semantics.</p>
           </div>
           <div class="card stack gap-8" style="border-color: #6abf7b33;">
-            <p style="font-size: 14px; color: var(--green); font-weight: 500;">Fluid APIs Team (ODSP)</p>
+            <p style="font-size: clamp(16px, 1.4vw, 22px); color: var(--green); font-weight: 600;">Fluid APIs Team</p>
             <p>Provides the storage service for Fluid data &mdash; persisting operations and snapshots. The protocol requires a reliable storage layer; this team builds and operates it.</p>
           </div>
           <div class="card stack gap-8" style="border-color: #d4a05333;">
-            <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Push Service Team</p>
+            <p style="font-size: clamp(16px, 1.4vw, 22px); color: var(--accent); font-weight: 600;">Push Service Team</p>
             <p>Owns the WebSocket service responsible for operation sequencing (assigning monotonic sequence numbers) and broadcasting ops to all connected clients in real time.</p>
           </div>
           <div class="card-accent stack gap-8">
-            <p style="font-size: 14px; font-weight: 500;">Our Role (Pages)</p>
+            <p style="font-size: clamp(16px, 1.4vw, 22px); font-weight: 600; color: var(--blue);">Our Role (Pages App)</p>
             <p>Build the app that integrates all three. Pages had unique storage requirements that didn&rsquo;t fit the standard model &mdash; we drove cross-team architectural alignment to ship coauthoring.</p>
           </div>
         </div>
         <div style="display:flex; gap: 24px;">
           <div class="metric"><div class="metric-value">330K</div><div class="metric-label">DAU</div></div>
           <div class="metric"><div class="metric-value">2.6M</div><div class="metric-label">MAU</div></div>
-          <div class="metric"><div class="metric-value">6</div><div class="metric-label">engineers</div></div>
+          <div class="metric"><div class="metric-value">6&ndash;8</div><div class="metric-label">engineers</div></div>
         </div>
       </div>
       <!-- RIGHT: 3-node diagram inside Fluid Framework box -->
@@ -423,7 +423,7 @@ body.show-notes .notes {
 <div class="slide">
   <div class="stack gap-24">
     <div class="stack gap-8">
-      <h3 style="color: var(--blue);">Coauthoring</h3>
+      <h3 style="color: var(--blue);">Real-time Collaborative Authoring for SharePoint Pages</h3>
       <h2>Decisions, Mistakes &amp; Impact</h2>
     </div>
     <div class="split">
