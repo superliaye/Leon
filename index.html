@@ -355,59 +355,24 @@ body.show-notes .notes {
       <h2>Three Teams, One Protocol</h2>
     </div>
     <div class="split">
-      <div class="stack gap-12" style="justify-content: center;">
-
-        <!-- Layer 1: Pages App -->
-        <div class="sys-layer" style="border: 2px solid #5b8fd455; background: #5b8fd40c;">
-          <div class="sys-layer-label" style="color: var(--blue);">Pages App<span class="sys-layer-sub">our team</span></div>
-          <div class="sys-chips">
-            <div class="sys-chip blue">Pages Data Model</div>
-            <span style="color: var(--text-muted);">&harr;</span>
-            <div class="sys-nested">
-              <div class="sys-nested-label">Fluid Container</div>
-              <div class="sys-chips" style="margin-top: 4px;">
-                <div class="sys-chip purple">SharedTree DDS</div>
-                <div class="sys-chip purple">Presence</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sys-arrow">&darr;&ensp;Fluid Protocol (Total Order Broadcast)&ensp;&darr;</div>
-
-        <!-- Layer 2: Fluid Framework -->
-        <div class="sys-layer" style="border: 2px solid #9b7bd444; background: #9b7bd40c;">
-          <div class="sys-layer-label" style="color: var(--purple);">Fluid Framework<span class="sys-layer-sub">FF team</span></div>
-          <div class="sys-chips">
-            <div class="sys-chip purple">Client SDK</div>
-            <div class="sys-chip purple">Schema &amp; Merge</div>
-            <div class="sys-chip purple">Hydration</div>
-          </div>
-        </div>
-
-        <div class="sys-arrow">&darr;&ensp;Protocol Contract&ensp;&darr;</div>
-
-        <!-- Layer 3: ODSP Services -->
-        <div class="sys-layer" style="border: 2px solid #6abf7b44; background: #6abf7b0c;">
-          <div class="sys-layer-label" style="color: var(--green);">ODSP Services<span class="sys-layer-sub">service team</span></div>
-          <div class="sys-chips">
-            <div class="sys-chip green">OpStream</div>
-            <div class="sys-chip green">Push (Seq)</div>
-            <div class="sys-chip green">Push (Broadcast)</div>
-          </div>
-        </div>
-
-      </div>
+      <!-- LEFT: cross-team explanation -->
       <div class="stack gap-16">
-        <div class="stack gap-8">
-          <p><strong>Fluid Framework</strong> defines the real-time collaboration protocol (total-order broadcast). We integrate its client SDK and SharedTree DDS into the Pages editing surface.</p>
-          <p><strong>ODSP Services</strong> (separate team) provide the server-side infrastructure: storage (OpStream), operation sequencing, and WebSocket broadcasting (Push).</p>
-          <p><strong>Our role:</strong> Build the app layer and navigate between both teams. Pages had unique requirements that didn&rsquo;t fit either team&rsquo;s standard model &mdash; we drove the architectural decisions across all three.</p>
-        </div>
-        <div class="card" style="border-color: #5b8fd433;">
-          <div class="stack gap-8">
-            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Why this was hard</p>
-            <p style="font-size: 15px;">Loop and Whiteboard use Fluid&rsquo;s standard storage model (.fluid files). Pages stores data differently (.aspx list items + Alternative File Partition), so we couldn&rsquo;t follow the playbook. Required cross-team alignment on a new storage contract.</p>
+        <div class="stack gap-12">
+          <div class="card stack gap-8" style="border-color: #9b7bd433;">
+            <p style="font-size: 14px; color: var(--purple); font-weight: 500;">Fluid Framework Team</p>
+            <p>Defines the real-time collaboration protocol &mdash; total-order broadcast guaranteeing all clients see the same operations in the same order. Owns the client SDK, SharedTree DDS, and merge semantics.</p>
+          </div>
+          <div class="card stack gap-8" style="border-color: #6abf7b33;">
+            <p style="font-size: 14px; color: var(--green); font-weight: 500;">Fluid APIs Team (ODSP)</p>
+            <p>Provides the storage service for Fluid data &mdash; persisting operations and snapshots. The protocol requires a reliable storage layer; this team builds and operates it.</p>
+          </div>
+          <div class="card stack gap-8" style="border-color: #d4a05333;">
+            <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Push Service Team</p>
+            <p>Owns the WebSocket service responsible for operation sequencing (assigning monotonic sequence numbers) and broadcasting ops to all connected clients in real time.</p>
+          </div>
+          <div class="card-accent stack gap-8">
+            <p style="font-size: 14px; font-weight: 500;">Our Role (Pages)</p>
+            <p>Build the app that integrates all three. Pages had unique storage requirements that didn&rsquo;t fit the standard model &mdash; we drove cross-team architectural alignment to ship coauthoring.</p>
           </div>
         </div>
         <div style="display:flex; gap: 24px;">
@@ -416,9 +381,42 @@ body.show-notes .notes {
           <div class="metric"><div class="metric-value">6</div><div class="metric-label">engineers</div></div>
         </div>
       </div>
+      <!-- RIGHT: 3-node diagram inside Fluid Framework box -->
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <div style="border: 2px solid #9b7bd433; border-radius: 18px; padding: clamp(24px, 2.5vw, 40px); background: #9b7bd408; position: relative; width: 100%;">
+          <div class="sys-layer-label" style="color: var(--purple); top: -12px;">Fluid Framework Protocol</div>
+          <!-- 3-node triangle layout -->
+          <div style="position: relative; width: 100%; aspect-ratio: 1.15; margin-top: 12px;">
+            <!-- Top node: Pages App -->
+            <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); text-align:center;">
+              <div class="sys-chip blue" style="padding: 14px 28px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px;">Pages App</div>
+              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">our team</div>
+            </div>
+            <!-- Bottom-left: Fluid APIs -->
+            <div style="position:absolute; bottom:0; left:0; text-align:center;">
+              <div class="sys-chip green" style="padding: 14px 24px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px;">Fluid APIs</div>
+              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">ops &amp; snapshot storage</div>
+            </div>
+            <!-- Bottom-right: Push -->
+            <div style="position:absolute; bottom:0; right:0; text-align:center;">
+              <div class="sys-chip" style="padding: 14px 24px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Push Service</div>
+              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">sequencing &amp; broadcast</div>
+            </div>
+            <!-- SVG connecting lines -->
+            <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 400 340" preserveAspectRatio="none">
+              <!-- Pages to Fluid APIs -->
+              <line x1="155" y1="60" x2="80" y2="255" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
+              <!-- Pages to Push -->
+              <line x1="245" y1="60" x2="320" y2="255" stroke="#d4a053" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
+              <!-- Fluid APIs to Push -->
+              <line x1="115" y1="285" x2="285" y2="285" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="notes">The 3-layer diagram is the key visual. Pages App sits on top, integrating Fluid Framework's client SDK (SharedTree DDS for tree-structured page data, Presence for cursor/user awareness). Fluid Framework team owns the protocol and merge semantics. ODSP Services team provides storage (OpStream) and real-time communication (Push). The challenge: Pages couldn't use Fluid's standard storage model — needed AFP in .aspx files, not .fluid files like Loop/Whiteboard. We drove cross-team alignment.</div>
+  <div class="notes">Left side: explain each team's role. Fluid Framework defines the protocol (total-order broadcast). Fluid APIs (ODSP) stores operations and snapshots. Push handles sequencing and WebSocket broadcasting. Our team builds the app integrating all three. The diagram shows the three services as interconnected nodes all operating within the Fluid Framework protocol boundary. Key talking point: Pages couldn't use the standard storage model (.fluid files) — we store in AFP of .aspx pages, which required negotiating a new contract with the Fluid APIs and Push teams.</div>
 </div>
 
 <!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
