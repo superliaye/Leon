@@ -283,17 +283,17 @@ body.show-notes .notes {
     <h3 style="color: var(--blue);">Real-time Coauthoring</h3>
     <h1>From Zero Collaboration<br>to Real-time at Scale</h1>
     <div class="title-line" style="background: var(--blue);"></div>
-    <p style="font-size: 20px; max-width: 620px; margin-top: 8px;">Incubated from a hackathon concept into a production real-time coauthoring system. Re-architected the SharePoint Pages data model to leverage Fluid Framework&rsquo;s Distributed Data Structures.</p>
-    <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Dec 2020 &ndash; Sep 2024 &middot; Senior Software Engineer &middot; Team of 6 &middot; 330K DAU / 2.6M MAU</p>
+    <p style="font-size: 20px; max-width: 680px; margin-top: 8px;">Incubated from a hackathon into a production real-time coauthoring system built on Fluid Framework&rsquo;s total-order broadcast protocol. Designed a dual-storage architecture (list item columns + Alternative File Partition) and migrated Pages to SharedTree DDS.</p>
+    <p style="font-size: 18px; max-width: 680px; margin-top: 8px; color: var(--text-dim);">Dec 2020 &ndash; Sep 2024 &middot; Senior Software Engineer &middot; Team of 6 &middot; 330K DAU / 2.6M MAU</p>
     <div class="tags" style="margin-top: 16px;">
       <span class="tag">Fluid Framework</span>
-      <span class="tag">Distributed Data Structures</span>
+      <span class="tag">SharedTree DDS</span>
+      <span class="tag">Total Order Broadcast</span>
       <span class="tag">React</span>
       <span class="tag">TypeScript</span>
-      <span class="tag">WebSockets</span>
     </div>
   </div>
-  <div class="notes">Set the scene. Pages was single-author only. Data loss on concurrent edits. Competitive gap vs Google Docs and Word Online. Customer escalations were driving urgency.</div>
+  <div class="notes">Set the scene. Pages was single-author only with data loss on concurrent edits. Key bet: Fluid Framework's total-order broadcast protocol. Unique challenge: Pages stores data in .aspx list items, unlike Loop/Whiteboard .fluid files — needed AFP storage model.</div>
 </div>
 
 <!-- ═══════════ SLIDE 4: COAUTH — ARCHITECTURE ═══════════ -->
@@ -309,40 +309,36 @@ body.show-notes .notes {
           <div class="arch-label">Client</div>
           <div class="arch-row">
             <div class="arch-box client">React Canvas</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box client">Section</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box client">Fluid DDS</div>
+            <span class="arch-arrow">&harr;</span>
+            <div class="arch-box client">SharedTree DDS</div>
           </div>
           <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
-          <div class="arch-label">Service</div>
+          <div class="arch-label">Service (ODSP)</div>
           <div class="arch-row">
-            <div class="arch-box service">Fluid Relay</div>
+            <div class="arch-box service">OpStream</div>
             <span class="arch-arrow">&harr;</span>
-            <div class="arch-box service">Op Ordering</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box service">Push (WS)</div>
+            <div class="arch-box service">Push (Seq + Broadcast)</div>
           </div>
           <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
           <div class="arch-label">Storage</div>
           <div class="arch-row">
-            <div class="arch-box storage">SPO Partitions</div>
+            <div class="arch-box storage">List Item Cols</div>
+            <span class="arch-arrow">&rarr;</span>
+            <div class="arch-box storage">AFP (Fluid)</div>
             <span class="arch-arrow">&harr;</span>
-            <div class="arch-box storage">Summaries</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box storage">Op Log</div>
+            <div class="arch-box storage">Snapshots</div>
           </div>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="stack gap-8">
-          <p><strong>Re-architected Pages data model</strong> with migration strategy to leverage DDS (Distributed Data Structures) from Microsoft&rsquo;s Fluid Framework, based on total-order broadcast protocol.</p>
-          <p><strong>Defined Pages-specific storage and consistency model</strong> that intentionally diverged from standard Fluid Framework patterns to meet product-level performance and reliability constraints.</p>
+          <p><strong>Dual-storage architecture:</strong> List item columns serve read mode; Alternative File Partition (AFP) becomes sole source of truth during editing. Hydration converts raw page data into SharedTree; dehydration converts back on save.</p>
+          <p><strong>SharedTree DDS</strong> for tree-structured page data &mdash; schema-driven, type-safe, with event bubbling for incremental re-rendering. Runtime schema generation for cross-app code sharing and safe breaking changes via Authoring Schema Versions (ASV).</p>
         </div>
         <div class="card" style="border-color: #5b8fd433;">
           <div class="stack gap-8">
-            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Cross-team negotiation</p>
-            <p style="font-size: 15px;">Pages had unique partitioning requirements that didn&rsquo;t fit Fluid&rsquo;s standard protocols or the storage team&rsquo;s model. Drove resolution through clear problem statements, proposed alternatives, and efficient cross-team communication.</p>
+            <p style="font-size: 14px; color: var(--blue); font-weight: 500;">Unique storage model</p>
+            <p style="font-size: 15px;">Pages stores Fluid data in AFP of .aspx files &mdash; unlike Loop/Whiteboard which use main file partitions. Negotiated this divergence with ODSP storage and Push teams to meet Pages&rsquo; unique constraints.</p>
           </div>
         </div>
         <div style="display:flex; gap: 24px;">
@@ -353,7 +349,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">Walk through the three layers. Emphasize the per-section container decision—this was the key architectural choice. Mention the Fluid team friction and how you resolved it.</div>
+  <div class="notes">Walk through the three layers. List Item Cols are read-mode source of truth; AFP takes over in edit mode. SharedTree chosen for tree-structured page data with schema-driven type safety. Hydration/dehydration bridges the two worlds. ASV ensures all clients in a session use the same schema version — critical for safe breaking changes.</div>
 </div>
 
 <!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
@@ -370,18 +366,18 @@ body.show-notes .notes {
           <p>Incubated the concept in a hackathon, built POC in 1 month. Initially resource-constrained, spent too much time on implementation details before setting up swimlanes.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Data loss &amp; reliability</p>
-          <p>Early rollout hit serious data loss issues from architectural changes (single-user to multi-user, new service dependencies, sync protocol). Treated every incident as Sev2, traced root causes across client/service/protocol. Added data-loss detection and automation to roadmap.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Concurrent edit data loss</p>
+          <p>Original section layout schema caused data loss: removing a column while another user adds content drops their work. Redesigned to a fixed 3-section model with visibility metadata &mdash; sections are hidden, never removed. Also introduced constraint-based conflict resolution (First Writer Wins) for concurrent control edits.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Unblocking partner teams</p>
-          <p>CoAuth rollout blocked by reliability issues from a partner team whose fixes weren&rsquo;t on their near-term roadmap. Drafted document outlining issue, user impact, and solutions. Offered direct team contribution. Unblocked within a week.</p>
+          <p>CoAuth rollout blocked by reliability issues from ODSP Push and OpStream teams whose fixes weren&rsquo;t on their near-term roadmap. Drafted document outlining issue, user impact, and solutions. Offered direct team contribution. Unblocked within a week.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Mistake: late delegation</p>
-          <p>Held onto too much implementation. At peak, team grew to 7 engineers (mix of senior/junior). Once I broke work into swimlanes by skill &mdash; seniors on server-side APIs, juniors on client features (presence, discard, data loss dashboard) &mdash; things accelerated.</p>
+          <p>Held onto too much implementation. At peak, team grew to 7 engineers (mix of senior/junior). Once I broke work into swimlanes &mdash; seniors on service integration (OpStream, Push), juniors on client features (presence, exclusive sessions, undo/redo, data loss dashboard) &mdash; things accelerated.</p>
         </div>
         <div class="card-accent stack gap-8">
           <p style="font-size: 14px; font-weight: 500;">What I'd do differently</p>
@@ -394,7 +390,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">Be honest about the delegation mistake—shows self-awareness. The Fluid bet shows conviction. Leadership growth ties into the career progression story.</div>
+  <div class="notes">The 3-section model is a great concrete example: original design removed sections on layout change, causing data loss with concurrent edits. Fix: always keep 3 sections, toggle visibility. Constraint-based FWW prevents concurrent control edit conflicts. Be honest about delegation mistake. Mention exclusive session design for publish/schedule (presence-based freeze).</div>
 </div>
 
 <!-- ═══════════ SLIDE 6: AI AUTHORING — THE PROBLEM ═══════════ -->
