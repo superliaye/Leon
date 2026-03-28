@@ -381,36 +381,59 @@ body.show-notes .notes {
           <div class="metric"><div class="metric-value">6&ndash;8</div><div class="metric-label">engineers</div></div>
         </div>
       </div>
-      <!-- RIGHT: 3-node diagram inside Fluid Framework box -->
-      <div style="display:flex; align-items:center; justify-content:center;">
-        <div style="border: 2px solid #9b7bd433; border-radius: 18px; padding: clamp(24px, 2.5vw, 40px); background: #9b7bd408; position: relative; width: 100%;">
-          <div class="sys-layer-label" style="color: var(--purple); top: -12px;">Fluid Framework Protocol</div>
-          <!-- 3-node triangle layout -->
-          <div style="position: relative; width: 100%; aspect-ratio: 1.15; margin-top: 12px;">
-            <!-- Top node: Pages App -->
-            <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); text-align:center;">
-              <div class="sys-chip blue" style="padding: 14px 28px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px;">Pages App</div>
-              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">our team</div>
+      <!-- RIGHT: Pages App diagram with Fluid Integration connecting to services -->
+      <div class="stack gap-12" style="justify-content:center;">
+        <!-- Pages App outer box -->
+        <div class="sys-layer" style="border: 2px solid #5b8fd455; background: #5b8fd40a;">
+          <div class="sys-layer-label" style="color: var(--blue);">Pages App</div>
+          <div style="display: flex; gap: clamp(10px, 1vw, 16px); margin-top: 8px;">
+            <!-- Rendering Layer -->
+            <div class="sys-layer" style="border: 1.5px solid var(--border); background: var(--surface); flex: 1;">
+              <div class="sys-layer-label" style="color: var(--text-dim); font-size: clamp(10px, 0.8vw, 13px);">Rendering Layer</div>
+              <div class="stack gap-8" style="margin-top: 6px;">
+                <div class="sys-chip blue" style="text-align:center; width:100%; justify-content:center; display:flex;">Presence</div>
+                <div class="sys-chip blue" style="text-align:center; width:100%; justify-content:center; display:flex;">Pages Data Structure</div>
+              </div>
             </div>
-            <!-- Bottom-left: Fluid APIs -->
-            <div style="position:absolute; bottom:0; left:0; text-align:center;">
-              <div class="sys-chip green" style="padding: 14px 24px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px;">Fluid APIs</div>
-              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">ops &amp; snapshot storage</div>
+            <!-- Arrows between -->
+            <div style="display:flex; flex-direction:column; justify-content:center; gap:12px; color: var(--text-muted); font-size: 16px;">
+              <span>&harr;</span>
+              <span>&harr;</span>
             </div>
-            <!-- Bottom-right: Push -->
-            <div style="position:absolute; bottom:0; right:0; text-align:center;">
-              <div class="sys-chip" style="padding: 14px 24px; font-size: clamp(13px, 1.15vw, 18px); border-width: 2px; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Push Service</div>
-              <div style="font-size: clamp(10px, 0.85vw, 13px); color: var(--text-muted); margin-top: 6px;">sequencing &amp; broadcast</div>
+            <!-- Fluid Integration -->
+            <div class="sys-layer" style="border: 1.5px solid #9b7bd444; background: #9b7bd408; flex: 1.4;">
+              <div class="sys-layer-label" style="color: var(--purple); font-size: clamp(10px, 0.8vw, 13px);">Fluid Integration</div>
+              <div class="stack gap-8" style="margin-top: 6px;">
+                <div class="sys-chip purple" style="text-align:center; width:100%; justify-content:center; display:flex;">Ephemeral Notification</div>
+                <div class="sys-chip purple" style="text-align:center; width:100%; justify-content:center; display:flex;">SharedTree DDS</div>
+                <div class="sys-chip purple" style="text-align:center; width:100%; justify-content:center; display:flex;">Observability</div>
+              </div>
             </div>
-            <!-- SVG connecting lines -->
-            <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 400 340" preserveAspectRatio="none">
-              <!-- Pages to Fluid APIs -->
-              <line x1="155" y1="60" x2="80" y2="255" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
-              <!-- Pages to Push -->
-              <line x1="245" y1="60" x2="320" y2="255" stroke="#d4a053" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
-              <!-- Fluid APIs to Push -->
-              <line x1="115" y1="285" x2="285" y2="285" stroke="#6abf7b" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.45"/>
-            </svg>
+          </div>
+        </div>
+
+        <!-- Arrow down from Fluid Integration -->
+        <div class="sys-arrow">&darr;&ensp;Fluid Protocol&ensp;&darr;</div>
+
+        <!-- Two service nodes inside protocol box -->
+        <div class="sys-layer" style="border: 2px solid #9b7bd433; background: #9b7bd408;">
+          <div class="sys-layer-label" style="color: var(--purple);">Fluid Framework Protocol</div>
+          <div style="display: flex; gap: clamp(10px, 1vw, 16px); margin-top: 8px;">
+            <div class="sys-layer" style="border: 1.5px solid #6abf7b44; background: #6abf7b0a; flex: 1; text-align: center;">
+              <div class="sys-layer-label" style="color: var(--green); font-size: clamp(10px, 0.8vw, 13px);">Fluid APIs Team</div>
+              <div class="stack gap-8" style="margin-top: 6px;">
+                <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Ops Storage</div>
+                <div class="sys-chip green" style="width:100%; justify-content:center; display:flex;">Snapshots</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; color: var(--text-muted); font-size: 16px;">&harr;</div>
+            <div class="sys-layer" style="border: 1.5px solid #d4a05344; background: #d4a0530a; flex: 1; text-align: center;">
+              <div class="sys-layer-label" style="color: var(--accent); font-size: clamp(10px, 0.8vw, 13px);">Push Service Team</div>
+              <div class="stack gap-8" style="margin-top: 6px;">
+                <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">Sequencing</div>
+                <div class="sys-chip" style="width:100%; justify-content:center; display:flex; background: #d4a05318; border-color: #d4a05344; color: var(--accent);">WebSocket Broadcast</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
