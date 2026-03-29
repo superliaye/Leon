@@ -349,39 +349,22 @@ body.show-notes .notes {
 </div>
 
 <!-- ═══════════ SLIDE 4: COAUTH — ARCHITECTURE ═══════════ -->
-<div class="slide" style="gap: clamp(12px, 1.5vh, 20px);">
-    <div class="stack gap-8">
+<div class="slide" style="gap: clamp(8px, 1vh, 14px);">
+    <div>
       <h3 style="color: var(--blue);">Real-time Collaborative Authoring for SharePoint Pages</h3>
-      <h2>Three Teams, One Protocol</h2>
     </div>
-    <!-- Split: left text + right diagram -->
-    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: clamp(16px, 2vw, 32px); flex: 1; min-height: 0;">
-      <!-- LEFT: team descriptions -->
-      <div class="stack gap-8" style="overflow: hidden;">
-        <div class="card stack gap-4" style="border-color: #9b7bd433; padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); color: var(--purple); font-weight: 600;">Fluid Framework Team</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Built 1:1 mapping between Pages data structure and Fluid DDS &mdash; the hydration/dehydration bridge enabling integration.</p>
-        </div>
-        <div class="card stack gap-4" style="border-color: #4ac8c833; padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); color: #4ac8c8; font-weight: 600;">Fluid APIs + Push Teams</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Collaborated to design a standalone architecture &mdash; SharePoint&rsquo;s .aspx file format needed compatibility that standard Fluid integration couldn&rsquo;t provide.</p>
-        </div>
-        <div class="card stack gap-4" style="border-color: #6abf7b33; padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); color: var(--green); font-weight: 600;">Unified Observability</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Integrated Push and Fluid APIs metrics into a single feature dashboard for aggregated cross-service health visibility.</p>
-        </div>
-        <div class="card-accent stack gap-4" style="padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); font-weight: 600; color: var(--blue);">My Role &mdash; Tech Lead</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Drove the end-to-end integration across all 4 teams. Built the standalone architecture and drove it to completion.</p>
-        </div>
-        <div style="display:flex; gap: 20px;">
-          <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">330K</div><div class="metric-label">DAU</div></div>
-          <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">2.6M</div><div class="metric-label">MAU</div></div>
-          <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">6&ndash;8</div><div class="metric-label">engineers</div></div>
-        </div>
-      </div>
-      <!-- RIGHT: SVG diagram -->
-      <div style="min-height: 0;">
+    <!-- Impact statement + what I did -->
+    <div style="display: flex; gap: clamp(24px, 3vw, 48px); align-items: baseline;">
+      <p style="font-size: clamp(16px, 1.4vw, 22px); line-height: 1.6; color: var(--text); flex: 1;">Led a team of <strong style="color: var(--accent);">6&ndash;8 engineers</strong>, collaborating with <strong style="color: var(--accent);">3 cross-functional teams</strong> to deliver real-time coauthoring for SharePoint Pages &mdash; reaching <strong style="color: var(--accent);">330K DAU / 2.6M MAU</strong>.</p>
+    </div>
+    <!-- What I did -->
+    <div style="display: flex; gap: clamp(12px, 1.5vw, 24px); flex-wrap: wrap;">
+      <div class="sys-chip blue" style="font-size: clamp(12px, 1vw, 16px);">Designed 1:1 mapping between Pages data &amp; Fluid DDS</div>
+      <div class="sys-chip blue" style="font-size: clamp(12px, 1vw, 16px);">Built standalone architecture for .aspx compatibility</div>
+      <div class="sys-chip blue" style="font-size: clamp(12px, 1vw, 16px);">Unified cross-service observability dashboard</div>
+    </div>
+    <!-- SVG diagram — takes most of the space -->
+    <div style="flex: 1; min-height: 0;">
           <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="al" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#8a8fd4"/></marker>
@@ -447,9 +430,15 @@ body.show-notes .notes {
             <!-- Fluid APIs ↔ Push Service -->
             <line x1="605" y1="445" x2="695" y2="445" stroke="#e8e6e1" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)" opacity="0.35"/>
           </svg>
-      </div><!-- /RIGHT diagram -->
-    </div><!-- /grid -->
-  <div class="notes">Left side: explain each team's role. Fluid Framework defines the protocol (total-order broadcast). Fluid APIs (ODSP) stores operations and snapshots. Push handles sequencing and WebSocket broadcasting. Our team builds the app integrating all three. The diagram shows the three services as interconnected nodes all operating within the Fluid Framework protocol boundary. Key talking point: Pages couldn't use the standard storage model (.fluid files) — we store in AFP of .aspx pages, which required negotiating a new contract with the Fluid APIs and Push teams.</div>
+    </div>
+    <!-- Small team legend at the bottom -->
+    <div style="display: flex; gap: clamp(16px, 2vw, 32px); flex-wrap: wrap; opacity: 0.7;">
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#e07888;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#e07888;">Pages App</strong> &mdash; our team</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#7eaee6;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#7eaee6;">Fluid Framework</strong> &mdash; protocol &amp; SDK</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#4ac8c8;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#4ac8c8;">Fluid APIs</strong> &mdash; ops &amp; storage</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:var(--accent);">Push Service</strong> &mdash; sequencing &amp; broadcast</span></div>
+    </div>
+  <div class="notes">Impact statement first: led 6-8 engineers, 3 partner teams, 330K DAU. Then three concrete things I did: data model mapping, standalone architecture, unified observability. Diagram shows the system architecture. Bottom legend explains what each team owns. Talk through the diagram briefly, then transition to decisions slide.</div>
 </div>
 
 <!-- ═══════════ SLIDE 5: COAUTH — DECISIONS & LEARNINGS ═══════════ -->
