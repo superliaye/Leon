@@ -239,6 +239,102 @@ body.show-notes .notes {
   font-size: clamp(12px, 0.95vw, 15px);
   color: var(--text-muted); letter-spacing: 0.04em;
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  html, body { overflow: hidden; }
+  .deck { overflow: hidden; }
+
+  .slide {
+    padding: 20px 16px 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slide.active {
+    overflow-y: auto;
+  }
+
+  /* Stack two-column grids into single column */
+  .split {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  /* Tighten spacing */
+  .stack.gap-24 { gap: 14px; }
+  .stack.gap-16 { gap: 10px; }
+
+  /* Scale down headings */
+  h1 { font-size: clamp(28px, 7vw, 42px); }
+  h2 { font-size: clamp(22px, 5.5vw, 32px); }
+  h3 { font-size: clamp(11px, 3vw, 14px); }
+
+  /* Cards: tighter padding */
+  .card, .card-accent {
+    padding: 14px;
+  }
+  .card p, .card-accent p {
+    font-size: 14px !important;
+    line-height: 1.5;
+  }
+
+  /* Tags wrap nicely */
+  .tags { gap: 6px; }
+  .tag { font-size: 11px; padding: 3px 8px; }
+
+  /* Section slides */
+  .section-slide {
+    padding: 24px 20px;
+  }
+  .section-num {
+    font-size: clamp(60px, 15vw, 100px);
+    right: 16px;
+    top: 12px;
+  }
+
+  /* SVG diagrams: let them scroll horizontally if needed */
+  .slide svg {
+    min-width: 600px;
+  }
+
+  /* Career path: hide connector lines, stack vertically */
+  .career-path {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .career-box { flex: none; }
+  .career-box.highlight { flex: none; }
+
+  /* Slide counter */
+  .slide-counter {
+    top: 8px;
+    right: 12px;
+  }
+
+  /* Hide keyboard hints on mobile */
+  .key-hint { display: none; }
+
+  /* Notes panel */
+  body.show-notes .notes {
+    left: 8px;
+    right: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  /* Title slides */
+  .title-slide {
+    padding: 32px 20px;
+  }
+
+  /* Chips */
+  .sys-chip {
+    font-size: 11px !important;
+    padding: 4px 8px;
+  }
+}
 </style>
 </head>
 <body>
