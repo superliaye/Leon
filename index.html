@@ -489,7 +489,7 @@ body.show-notes .notes {
     <h3 style="color: var(--rose);">AI-Powered Authoring</h3>
     <h1>From &ldquo;We Don&rsquo;t Know<br>What to Build&rdquo; to 60K MAU</h1>
     <div class="title-line" style="background: var(--rose);"></div>
-    <p style="font-size: 20px; max-width: 660px; margin-top: 8px;">The team had already tried command-based AI editing &mdash; but LLM capabilities weren&rsquo;t there yet, our agent toolset was poor, and nobody knew how an LLM could reliably modify pages on behalf of users. I found a path through: <strong style="color: var(--rose);">schematize the platform</strong>, <strong style="color: var(--rose);">scope a shippable bet</strong>, then <strong style="color: var(--rose);">scale to full AI authoring</strong>.</p>
+    <p style="font-size: 20px; max-width: 660px; margin-top: 8px;">The team had already tried command-based AI editing &mdash; but LLM capabilities weren&rsquo;t there yet, our agent toolset was poor, and nobody knew how an LLM could reliably modify pages on behalf of users. We got there in three phases: <strong style="color: var(--rose);">schematize the platform</strong>, <strong style="color: var(--rose);">scope a shippable bet</strong>, then <strong style="color: var(--rose);">scale to full AI authoring</strong>.</p>
     <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Sep 2024 &ndash; Present &middot; Principal Software Engineer</p>
     <div class="tags" style="margin-top: 16px;">
       <span class="tag">LLM Orchestration</span>
@@ -539,7 +539,7 @@ body.show-notes .notes {
         <text x="378" y="94" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">into JSON structured output</text>
         <text x="378" y="110" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">the LLM could understand</text>
         <text x="378" y="130" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">&gt;50% token reduction</text>
-        <text x="378" y="144" fill="#6abf7b" font-family="IBM Plex Sans, sans-serif" font-size="10" text-anchor="middle">Hugely improved model focus</text>
+        <text x="378" y="144" fill="#6abf7b" font-family="IBM Plex Sans, sans-serif" font-size="10" text-anchor="middle">Significantly improved model focus</text>
 
         <!-- Arrow: Phase 1 → Phase 2 -->
         <path d="M493,80 L513,80" stroke="#e8e6e1" stroke-width="2" opacity="0.5"/>
@@ -632,11 +632,11 @@ body.show-notes .notes {
     </div>
     <!-- Legend -->
     <div style="display: flex; gap: clamp(16px, 2vw, 32px); flex-wrap: wrap; opacity: 0.7;">
-      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d4a053;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d4a053;">AI Properties</strong> &mdash; schema foundation I designed</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d4a053;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d4a053;">AI Properties</strong> &mdash; schema foundation</span></div>
       <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d45b6e;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d45b6e;">Smart Sections</strong> &mdash; 0&rarr;1 shipped product</span></div>
       <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#9b7bd4;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#9b7bd4;">Vibe Authoring</strong> &mdash; full-page AI agent, rolling out</span></div>
     </div>
-  <div class="notes">Walk through the progression: (1) Problem: team tried command-based editing where the LLM calls tools. It failed — LLM couldn't use tools reliably and the tool surface was incomplete. (2) AI Properties: I schematized every page component into clean JSON so the LLM could understand what a SharePoint page is and what it can do. >50% token reduction, hugely improved model focus. (3) Smart Sections: scoped down from full page to section generation. Well-calculated risks, shipped real value, 60K MAU. (4) Vibe Authoring: now fully powered to do full-page AI authoring. Content-first means the LLM writes directly to our JSON page format — like code generation. The harness represents the full page state, the LLM reads it and generates diffs. No fragile tool chain.</div>
+  <div class="notes">Walk through the progression: (1) Problem: team tried command-based editing where the LLM calls tools. It failed — LLM couldn't use tools reliably and the tool surface was incomplete. (2) AI Properties: I schematized every page component into clean JSON so the LLM could understand what a SharePoint page is and what it can do. >50% token reduction, significantly improved model focus. (3) Smart Sections: scoped down from full page to section generation. Well-calculated risks, shipped real value, 60K MAU. (4) Vibe Authoring: now fully powered to do full-page AI authoring. Content-first means the LLM writes directly to our JSON page format — like code generation. The harness represents the full page state, the LLM reads it and generates diffs. No fragile tool chain.</div>
 </div>
 
 <!-- ═══════════ SLIDE 8: AI — DECISIONS & LEARNINGS ═══════════ -->
@@ -650,7 +650,7 @@ body.show-notes .notes {
       <div class="stack gap-16">
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why I built AI Properties first</p>
-          <p>The LLM couldn&rsquo;t understand SharePoint Pages &mdash; components were unstructured blobs. I designed a schema-driven platform that converted every component into clean JSON structured output the LLM could grasp: what a page is, what&rsquo;s supported, what the constraints are. Over 50% token reduction and hugely improved model focus. This became the foundation everything else was built on.</p>
+          <p>The LLM couldn&rsquo;t understand SharePoint Pages &mdash; components were unstructured blobs. I designed a schema-driven platform that converted every component into clean JSON structured output the LLM could grasp: what a page is, what&rsquo;s supported, what the constraints are. Over 50% token reduction and significantly improved model focus. Smart Sections, Vibe Authoring, and ~5 other features were all built on top of this.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why we scoped down to sections</p>
@@ -658,7 +658,7 @@ body.show-notes .notes {
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why content-first over tool-oriented</p>
-          <p>Team had tried tool-oriented: LLM calls UI tools one-by-one. It was fragile &mdash; LLM couldn&rsquo;t use our tools reliably and the tool surface was incomplete. I built a POC where the LLM writes directly to our JSON page format in one pass. Concrete demo convinced leadership to adopt this architecture for Vibe Authoring.</p>
+          <p>Team had tried tool-oriented: LLM calls UI tools one-by-one. It was fragile &mdash; LLM couldn&rsquo;t use our tools reliably and the tool surface was incomplete. I built a POC where the LLM writes directly to our JSON page format in one pass. The POC demo led to the team adopting this architecture for Vibe Authoring.</p>
         </div>
       </div>
       <div class="stack gap-16">
@@ -672,7 +672,7 @@ body.show-notes .notes {
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--green); font-weight: 500;">Growth arc: from CoAuth to AI</p>
-          <p>CoAuth taught me to delegate and prioritize reliability over speed. AI Authoring taught me to navigate ambiguity and move fast without losing rigor. Applied the swimlane lesson from day one. Together they show I can operate in both multi-year infrastructure and fast-cycle AI spaces.</p>
+          <p>CoAuth taught me to delegate and prioritize reliability over speed. AI Authoring taught me to navigate ambiguity and move fast without losing rigor. Applied the swimlane lesson from day one. Two very different modes of engineering &mdash; and the lessons from one directly informed the other.</p>
         </div>
       </div>
     </div>
