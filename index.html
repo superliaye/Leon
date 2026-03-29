@@ -440,10 +440,10 @@ body.show-notes .notes {
             <text x="820" y="438" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="17" font-weight="600" text-anchor="middle">Push Service</text>
             <text x="820" y="462" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Sequencing &amp; broadcast</text>
 
-            <!-- Triangle: Fluid Integration → Fluid APIs -->
-            <line x1="530" y1="290" x2="470" y2="385" stroke="#e8e6e1" stroke-width="2" opacity="0.35"/>
-            <!-- Triangle: Fluid Integration → Push -->
-            <line x1="700" y1="290" x2="770" y2="385" stroke="#e8e6e1" stroke-width="2" opacity="0.35"/>
+            <!-- Fluid Integration ↔ Fluid APIs (bidirectional) -->
+            <line x1="530" y1="255" x2="470" y2="390" stroke="#e8e6e1" stroke-width="2" opacity="0.35" marker-start="url(#al)" marker-end="url(#ar)"/>
+            <!-- Fluid Integration ↔ Push Service (bidirectional) -->
+            <line x1="700" y1="255" x2="770" y2="390" stroke="#e8e6e1" stroke-width="2" opacity="0.35" marker-start="url(#al)" marker-end="url(#ar)"/>
             <!-- Fluid APIs ↔ Push Service -->
             <line x1="605" y1="445" x2="695" y2="445" stroke="#e8e6e1" stroke-width="2" marker-start="url(#al)" marker-end="url(#ar)" opacity="0.35"/>
           </svg>
