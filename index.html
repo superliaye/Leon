@@ -482,87 +482,131 @@ body.show-notes .notes {
   <div class="notes">Lead with the standalone architecture story: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. The 3-section model is a concrete technical decision: sections hidden not removed. Cross-service observability shows you thought beyond just your code. Be honest about delegation — swimlanes were the fix. Cross-team lesson: clear problem statements, proposed alternatives, efficient communication.</div>
 </div>
 
-<!-- ═══════════ SLIDE 6: AI AUTHORING — THE PROBLEM ═══════════ -->
+<!-- ═══════════ SLIDE 6: AI AUTHORING — SECTION INTRO ═══════════ -->
 <div class="slide section-slide">
   <div class="section-num">05</div>
   <div class="stack gap-16">
     <h3 style="color: var(--rose);">AI-Powered Authoring</h3>
     <h1>Shipping Intelligent<br>Authoring at Speed</h1>
     <div class="title-line" style="background: var(--rose);"></div>
-    <p style="font-size: 20px; max-width: 620px; margin-top: 8px;">Architected the AI Properties platform, launched Smart Sections (60K MAU), and now leading Vibe Authoring &mdash; bounded, context-aware AI content generation using content-oriented architecture.</p>
+    <p style="font-size: 20px; max-width: 640px; margin-top: 8px;">Took AI authoring from zero to <strong style="color: var(--rose);">60K monthly active users</strong> &mdash; defined the schema platform, scoped the product, and shipped under extreme ambiguity while the AI landscape shifted weekly.</p>
     <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Sep 2024 &ndash; Present &middot; Principal Software Engineer</p>
     <div class="tags" style="margin-top: 16px;">
-      <span class="tag">Copilot Stack</span>
-      <span class="tag">AI Agents</span>
+      <span class="tag">LLM Orchestration</span>
+      <span class="tag">Schema Design</span>
       <span class="tag">Prompt Engineering</span>
-      <span class="tag">BizChat / Sydney</span>
-      <span class="tag">AugLoop</span>
-      <span class="tag">EVAL</span>
+      <span class="tag">0&rarr;1 Product Launch</span>
+      <span class="tag">Agent Architecture</span>
     </div>
   </div>
-  <div class="notes">Different gear from coauthoring. Here the constraint was speed and uncertainty, not multi-year complexity. AI landscape was moving so fast the team worried about building things that'd be obsolete in months.</div>
+  <div class="notes">Different gear from coauthoring. Here the constraint was speed and uncertainty, not multi-year complexity. AI landscape was moving so fast the team worried about building things that'd be obsolete in months. Lead with the 60K MAU number — that's the hook.</div>
 </div>
 
 <!-- ═══════════ SLIDE 7: AI — ARCHITECTURE ═══════════ -->
-<div class="slide">
-  <div class="stack gap-24">
-    <div class="stack gap-8">
+<div class="slide" style="gap: clamp(8px, 1vh, 14px);">
+    <div>
       <h3 style="color: var(--rose);">AI Authoring</h3>
-      <h2>Smart Sections &amp; Orchestration</h2>
     </div>
-    <div class="split">
-      <div class="card" style="padding: 28px;">
-        <div class="arch-diagram">
-          <div class="arch-label">User</div>
-          <div class="arch-row">
-            <div class="arch-box client">Page Editor</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box client">Prompt UI</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box client">Preview / Accept</div>
-          </div>
-          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
-          <div class="arch-label">Orchestration</div>
-          <div class="arch-row">
-            <div class="arch-box ai">Context Assembly</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box ai">Prompt Eng.</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box ai">Parser</div>
-            <span class="arch-arrow">&rarr;</span>
-            <div class="arch-box ai">Renderer</div>
-          </div>
-          <div style="height:6px;border-left:2px dashed var(--border);margin-left:40px;"></div>
-          <div class="arch-label">AI Services</div>
-          <div class="arch-row">
-            <div class="arch-box infra">Copilot</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box infra">AugLoop</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box infra">EVAL</div>
-            <span class="arch-arrow">&harr;</span>
-            <div class="arch-box infra">RAI</div>
-          </div>
-        </div>
-      </div>
-      <div class="stack gap-16">
-        <div class="stack gap-8">
-          <p><strong>AI Properties:</strong> Schema-driven platform enabling web part teams to define LLM-safe schemas. Converted unstructured SharePoint components into deterministic, structured representations. Reduced token usage by 30%, improved generation quality.</p>
-          <p><strong>Smart Sections (~60K MAU):</strong> 0&rarr;1 launch of LLM-powered authoring generating data-rich UI sections and pages, built on the AI Properties platform.</p>
-        </div>
-        <div class="card" style="border-color: #d45b6e44;">
-          <div class="stack gap-8">
-            <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Vibe Authoring</p>
-            <p style="font-size: 15px;">Content-oriented (vs. tool-oriented) architecture using Git-backed workspaces and in-memory file systems. Provides explicit state, versioning, and evaluation surfaces. Optimized agent orchestrator for controllability and iteration velocity in production.</p>
-          </div>
-        </div>
-        <div class="stack gap-8">
-          <p style="font-size: 14px; color: var(--text-muted); font-weight: 500;">Production AI authoring pipeline emitting JSON-schematized Pages content. Became backbone for multiple AI features and unblocked rapid adoption by cross-team partners.</p>
-        </div>
-      </div>
+    <!-- Impact statement -->
+    <div style="display: flex; gap: clamp(24px, 3vw, 48px); align-items: baseline;">
+      <p style="font-size: clamp(16px, 1.4vw, 22px); line-height: 1.6; color: var(--text); flex: 1;">I designed the <strong style="color: var(--rose);">AI Properties</strong> schema platform (reducing token usage by <strong style="color: var(--rose);">30%</strong>), scoped and launched <strong style="color: var(--rose);">Smart Sections</strong> from 0&rarr;1 (<strong style="color: var(--rose);">~60K MAU</strong>), and am now leading <strong style="color: var(--rose);">next-gen AI authoring</strong> architecture.</p>
     </div>
-  </div>
-  <div class="notes">Walk through the three layers. Emphasize the scoping decision (Smart Sections vs full page). The ISection composability point shows good design thinking.</div>
+    <!-- What I did chips -->
+    <div style="display: flex; gap: clamp(12px, 1.5vw, 24px); flex-wrap: wrap;">
+      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Designed schema platform adopted org-wide</div>
+      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Scoped &amp; shipped 0&rarr;1 AI product</div>
+      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Architecting content-oriented AI generation</div>
+    </div>
+    <!-- SVG diagram -->
+    <div style="flex: 1; min-height: 0;">
+      <svg viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ai-ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#d45b6e"/></marker>
+          <marker id="ai-al" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#d45b6e"/></marker>
+          <marker id="ai-ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8a8890"/></marker>
+        </defs>
+
+        <!-- User Layer — top -->
+        <rect x="10" y="10" width="980" height="100" rx="12" fill="#d45b6e06" stroke="#d45b6e" stroke-width="1.5" stroke-dasharray="8 4"/>
+        <text x="30" y="35" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">USER</text>
+        <rect x="40" y="48" width="180" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
+        <text x="130" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Page Editor</text>
+        <rect x="260" y="48" width="180" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
+        <text x="350" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Prompt UI</text>
+        <rect x="480" y="48" width="200" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
+        <text x="580" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Preview / Accept</text>
+        <!-- User flow arrows -->
+        <line x1="225" y1="70" x2="255" y2="70" stroke="#d45b6e" stroke-width="2" marker-end="url(#ai-ar)"/>
+        <line x1="445" y1="70" x2="475" y2="70" stroke="#d45b6e" stroke-width="2" marker-end="url(#ai-ar)"/>
+
+        <!-- Orchestration Layer — I built this (highlighted) -->
+        <rect x="10" y="130" width="980" height="190" rx="12" fill="#d4a05308" stroke="#d4a053" stroke-width="2"/>
+        <text x="30" y="155" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">ORCHESTRATION — what I built</text>
+
+        <!-- AI Properties box -->
+        <rect x="40" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#d4a05366" stroke-width="1.5"/>
+        <text x="180" y="196" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">AI Properties</text>
+        <text x="180" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">Schema-driven platform</text>
+        <text x="180" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Converts UI components into</text>
+        <text x="180" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">structured, LLM-safe representations</text>
+        <rect x="60" y="280" width="100" height="12" rx="3" fill="#6abf7b33"/><rect x="60" y="280" width="70" height="12" rx="3" fill="#6abf7b88"/>
+        <text x="172" y="290" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="11">-30% tokens</text>
+
+        <!-- Smart Sections box -->
+        <rect x="360" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#d45b6e66" stroke-width="1.5"/>
+        <text x="500" y="196" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">Smart Sections</text>
+        <text x="500" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">0&rarr;1 product launch</text>
+        <text x="500" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">LLM-powered authoring that</text>
+        <text x="500" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">generates data-rich page sections</text>
+        <rect x="404" y="282" width="80" height="10" rx="3" fill="#d45b6e22"/>
+        <text x="494" y="290" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="11">~60K MAU</text>
+
+        <!-- Next-gen Authoring box -->
+        <rect x="680" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#9b7bd466" stroke-width="1.5"/>
+        <text x="820" y="196" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">Next-Gen Authoring</text>
+        <text x="820" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">In progress</text>
+        <text x="820" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Content-oriented: LLM generates</text>
+        <text x="820" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">full page structure in one pass</text>
+        <text x="820" y="290" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Git-backed workspaces &middot; versioned state</text>
+
+        <!-- Arrows between orchestration boxes -->
+        <line x1="325" y1="235" x2="355" y2="235" stroke="#8a8890" stroke-width="1.5" marker-end="url(#ai-ag)"/>
+        <line x1="645" y1="235" x2="675" y2="235" stroke="#8a8890" stroke-width="1.5" marker-end="url(#ai-ag)"/>
+
+        <!-- AI Services Layer — bottom -->
+        <rect x="10" y="340" width="980" height="130" rx="12" fill="#5b8fd406" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="8 4"/>
+        <text x="30" y="365" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">AI SERVICES (Microsoft Copilot Stack)</text>
+
+        <rect x="40" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
+        <text x="140" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">LLM Gateway</text>
+        <text x="140" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Copilot orchestration</text>
+
+        <rect x="280" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
+        <text x="380" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Prompt Routing</text>
+        <text x="380" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Context assembly &amp; caching</text>
+
+        <rect x="520" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
+        <text x="620" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Evaluation</text>
+        <text x="620" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Quality &amp; perf metrics</text>
+
+        <rect x="760" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
+        <text x="860" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Safety / RAI</text>
+        <text x="860" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Responsible AI guardrails</text>
+
+        <!-- Vertical connectors: orchestration → services -->
+        <line x1="180" y1="300" x2="140" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
+        <line x1="500" y1="300" x2="380" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
+        <line x1="500" y1="300" x2="620" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
+        <line x1="820" y1="300" x2="860" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
+      </svg>
+    </div>
+    <!-- Legend -->
+    <div style="display: flex; gap: clamp(16px, 2vw, 32px); flex-wrap: wrap; opacity: 0.7;">
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d4a053;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d4a053;">Orchestration</strong> &mdash; what I designed &amp; built</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d45b6e;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d45b6e;">User flow</strong> &mdash; Pages editing experience</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#5b8fd4;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#5b8fd4;">AI Services</strong> &mdash; Microsoft Copilot platform</span></div>
+    </div>
+  <div class="notes">Three things I built in the orchestration layer: (1) AI Properties — schema platform, 30% token savings, adopted org-wide. (2) Smart Sections — 0 to 1, 60K MAU. (3) Next-gen authoring — content-oriented means the LLM generates the whole page structure in one pass (like code generation), rather than calling tools one at a time. The bottom layer is Microsoft's Copilot stack — I integrated with it, didn't build it.</div>
 </div>
 
 <!-- ═══════════ SLIDE 8: AI — DECISIONS & LEARNINGS ═══════════ -->
@@ -570,40 +614,40 @@ body.show-notes .notes {
   <div class="stack gap-24">
     <div class="stack gap-8">
       <h3 style="color: var(--rose);">AI Authoring</h3>
-      <h2>Decisions, Challenges &amp; Growth</h2>
+      <h2>Decisions, Mistakes &amp; Impact</h2>
     </div>
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Content-first vs. tool-oriented</p>
-          <p>Initial plan was tool-oriented orchestration via agent platform. Partner team was developing content-first approach. Built a POC using content-first, achieved MVP without building custom tools. Concrete demo convinced management to pivot.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Content-first vs. tool-oriented architecture</p>
+          <p>Initial plan: LLM calls UI tools one-by-one (tool-oriented). I built a POC where the LLM generates the full page structure in one pass (content-first) &mdash; like code generation instead of button-clicking. Concrete demo convinced leadership to pivot the entire approach.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Smart Sections prototype</p>
-          <p>Short timeline to validate AI value to customers. Built on two tracks: improved infrastructure + LLM integration. Partnered with senior engineer for vertical slice demo. Infrastructure challenge: existing system couldn&rsquo;t generate SharePoint web parts. Delivered prototype, built confidence across leadership.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Scoping Smart Sections under uncertainty</p>
+          <p>AI landscape was shifting weekly &mdash; team worried about building things that&rsquo;d be obsolete in months. Partnered with a senior engineer to carve out Smart Sections as a focused, shippable scenario. Two parallel tracks: infrastructure (existing system couldn&rsquo;t generate web parts) + LLM integration. Delivered prototype, built confidence across leadership.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Rapid AI learning</p>
-          <p>Dove into AI frontier through parallel channels: external research &amp; open papers, internal Microsoft Copilot architectures, hands-on AI tools in own workflow. Ramped within months.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Managing team anxiety about obsolescence</p>
+          <p>Team feared their work could become obsolete in months. Made prioritization transparent &mdash; laid out ROI for each bet, talked openly about risks, agreed as a group. Shifted from fear-based to evidence-based decision-making.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Ambiguity in Vibe Authoring</p>
-          <p>Project began with unclear goal &mdash; &ldquo;like Word&rdquo; or &ldquo;like GitHub Copilot&rdquo;? No clear boundaries, metrics, or architecture. Defined content-oriented architecture, Git-backed workspaces, and evaluation surfaces to bring clarity.</p>
+          <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Mistake: engineering discipline slipped under speed pressure</p>
+          <p>Moved so fast that documentation and coding discipline slipped. Cutting corners created tech debt that slowed us down later. Learned that LLM integration delivers more impact when built on strong engineering fundamentals &mdash; especially in a fast-moving space.</p>
         </div>
         <div class="card-accent stack gap-8">
-          <p style="font-size: 14px; font-weight: 500;">AI Properties impact</p>
-          <p>Org-wide schema-driven platform. Reduced token usage by 30%, improved generation quality/performance, reduced model confusion. Became the foundation that unblocked multiple teams.</p>
+          <p style="font-size: 14px; font-weight: 500;">AI Properties &mdash; org-wide impact</p>
+          <p>Designed a schema-driven platform so any team could define LLM-safe representations for their components. Reduced token usage by <strong style="color: var(--rose);">30%</strong>, improved generation quality, reduced model confusion. Became the foundation that unblocked multiple partner teams.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Evolution from CoAuth</p>
-          <p>CoAuth taught me to delegate and prioritize reliability. AI Authoring taught me to navigate ambiguity and move fast. Applied swimlane lesson from day one. Together they show I can operate in both multi-year infrastructure and fast-cycle AI spaces.</p>
+          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Growth arc: from CoAuth to AI</p>
+          <p>CoAuth taught me to delegate and prioritize reliability over speed. AI Authoring taught me to navigate ambiguity and move fast without losing rigor. Applied the swimlane lesson from day one. Together they show I can operate in both multi-year infrastructure and fast-cycle AI spaces.</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="notes">Show the contrast: coauthoring was slow and deep, AI was fast and uncertain. You adapted your approach. The evolution point ties both projects together.</div>
+  <div class="notes">Key decisions: content-first POC was the turning point — explain the analogy (code generation vs button clicking). Scoping story shows you can make bets under uncertainty. Team anxiety card shows people leadership. Mistake is honest and specific — not "I worked too hard." AI Properties impact is the technical highlight. Growth arc ties both projects together for the interviewer.</div>
 </div>
 
 <!-- ═══════════ SLIDE 9: CLOSING ═══════════ -->
