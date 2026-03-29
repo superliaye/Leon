@@ -487,9 +487,9 @@ body.show-notes .notes {
   <div class="section-num">05</div>
   <div class="stack gap-16">
     <h3 style="color: var(--rose);">AI-Powered Authoring</h3>
-    <h1>Shipping Intelligent<br>Authoring at Speed</h1>
+    <h1>From &ldquo;We Don&rsquo;t Know<br>What to Build&rdquo; to 60K MAU</h1>
     <div class="title-line" style="background: var(--rose);"></div>
-    <p style="font-size: 20px; max-width: 640px; margin-top: 8px;">Took AI authoring from zero to <strong style="color: var(--rose);">60K monthly active users</strong> &mdash; defined the schema platform, scoped the product, and shipped under extreme ambiguity while the AI landscape shifted weekly.</p>
+    <p style="font-size: 20px; max-width: 660px; margin-top: 8px;">The team had already tried command-based AI editing &mdash; but LLM capabilities weren&rsquo;t there yet, our agent toolset was poor, and nobody knew how an LLM could reliably modify pages on behalf of users. I found a path through: <strong style="color: var(--rose);">schematize the platform</strong>, <strong style="color: var(--rose);">scope a shippable bet</strong>, then <strong style="color: var(--rose);">scale to full AI authoring</strong>.</p>
     <p style="font-size: 18px; max-width: 620px; margin-top: 8px; color: var(--text-dim);">Sep 2024 &ndash; Present &middot; Principal Software Engineer</p>
     <div class="tags" style="margin-top: 16px;">
       <span class="tag">LLM Orchestration</span>
@@ -499,114 +499,144 @@ body.show-notes .notes {
       <span class="tag">Agent Architecture</span>
     </div>
   </div>
-  <div class="notes">Different gear from coauthoring. Here the constraint was speed and uncertainty, not multi-year complexity. AI landscape was moving so fast the team worried about building things that'd be obsolete in months. Lead with the 60K MAU number — that's the hook.</div>
+  <div class="notes">Start here: extreme ambiguity. Team had already tried command-based approach — LLM calls tools to modify page elements. It didn't work well. LLM couldn't reliably use our tools, and the tool surface was incomplete. The question was: how can an LLM efficiently make changes to a SharePoint page? That's the problem I solved in three phases.</div>
 </div>
 
-<!-- ═══════════ SLIDE 7: AI — ARCHITECTURE ═══════════ -->
+<!-- ═══════════ SLIDE 7: AI — THE PROGRESSION ═══════════ -->
 <div class="slide" style="gap: clamp(8px, 1vh, 14px);">
     <div>
       <h3 style="color: var(--rose);">AI Authoring</h3>
     </div>
-    <!-- Impact statement -->
-    <div style="display: flex; gap: clamp(24px, 3vw, 48px); align-items: baseline;">
-      <p style="font-size: clamp(16px, 1.4vw, 22px); line-height: 1.6; color: var(--text); flex: 1;">I designed the <strong style="color: var(--rose);">AI Properties</strong> schema platform (reducing token usage by <strong style="color: var(--rose);">30%</strong>), scoped and launched <strong style="color: var(--rose);">Smart Sections</strong> from 0&rarr;1 (<strong style="color: var(--rose);">~60K MAU</strong>), and am now leading <strong style="color: var(--rose);">next-gen AI authoring</strong> architecture.</p>
-    </div>
-    <!-- What I did chips -->
-    <div style="display: flex; gap: clamp(12px, 1.5vw, 24px); flex-wrap: wrap;">
-      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Designed schema platform adopted org-wide</div>
-      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Scoped &amp; shipped 0&rarr;1 AI product</div>
-      <div class="sys-chip" style="font-size: clamp(12px, 1vw, 16px); border-color: #d45b6e44; color: var(--rose);">Architecting content-oriented AI generation</div>
-    </div>
-    <!-- SVG diagram -->
+    <!-- SVG diagram — progression timeline -->
     <div style="flex: 1; min-height: 0;">
-      <svg viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="ai-ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#d45b6e"/></marker>
-          <marker id="ai-al" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#d45b6e"/></marker>
           <marker id="ai-ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8a8890"/></marker>
+          <marker id="ai-aw" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#e8e6e1"/></marker>
         </defs>
 
-        <!-- User Layer — top -->
-        <rect x="10" y="10" width="980" height="100" rx="12" fill="#d45b6e06" stroke="#d45b6e" stroke-width="1.5" stroke-dasharray="8 4"/>
-        <text x="30" y="35" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">USER</text>
-        <rect x="40" y="48" width="180" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
-        <text x="130" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Page Editor</text>
-        <rect x="260" y="48" width="180" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
-        <text x="350" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Prompt UI</text>
-        <rect x="480" y="48" width="200" height="44" rx="10" fill="#d45b6e14" stroke="#d45b6e44" stroke-width="1.5"/>
-        <text x="580" y="76" fill="#e8e6e1" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Preview / Accept</text>
-        <!-- User flow arrows -->
-        <line x1="225" y1="70" x2="255" y2="70" stroke="#d45b6e" stroke-width="2" marker-end="url(#ai-ar)"/>
-        <line x1="445" y1="70" x2="475" y2="70" stroke="#d45b6e" stroke-width="2" marker-end="url(#ai-ar)"/>
+        <!-- Phase 0: The Problem — crossed out -->
+        <rect x="10" y="10" width="220" height="140" rx="12" fill="#d45b6e08" stroke="#d45b6e44" stroke-width="1.5" stroke-dasharray="6 3"/>
+        <text x="120" y="38" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" text-anchor="middle">THE PROBLEM</text>
+        <text x="120" y="62" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Command-based AI editing:</text>
+        <text x="120" y="80" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">LLM calls tools one-by-one</text>
+        <text x="120" y="105" fill="#d45b6e" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle" font-style="italic">LLM couldn&apos;t use tools reliably</text>
+        <text x="120" y="122" fill="#d45b6e" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle" font-style="italic">No AI-first schema existed</text>
+        <!-- Strike-through lines across description text -->
+        <line x1="30" y1="57" x2="210" y2="57" stroke="#d45b6e55" stroke-width="1.5"/>
+        <line x1="30" y1="75" x2="210" y2="75" stroke="#d45b6e55" stroke-width="1.5"/>
 
-        <!-- Orchestration Layer — I built this (highlighted) -->
-        <rect x="10" y="130" width="980" height="190" rx="12" fill="#d4a05308" stroke="#d4a053" stroke-width="2"/>
-        <text x="30" y="155" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">ORCHESTRATION — what I built</text>
+        <!-- Arrow: Problem → Phase 1 -->
+        <path d="M235,80 L255,80" stroke="#e8e6e1" stroke-width="2" opacity="0.5"/>
+        <path d="M250,74 L260,80 L250,86" stroke="#e8e6e1" stroke-width="2" fill="none" opacity="0.5"/>
 
-        <!-- AI Properties box -->
-        <rect x="40" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#d4a05366" stroke-width="1.5"/>
-        <text x="180" y="196" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">AI Properties</text>
-        <text x="180" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">Schema-driven platform</text>
-        <text x="180" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Converts UI components into</text>
-        <text x="180" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">structured, LLM-safe representations</text>
-        <rect x="60" y="280" width="100" height="12" rx="3" fill="#6abf7b33"/><rect x="60" y="280" width="70" height="12" rx="3" fill="#6abf7b88"/>
-        <text x="172" y="290" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="11">-30% tokens</text>
+        <!-- Phase 1: AI Properties -->
+        <rect x="268" y="10" width="220" height="140" rx="12" fill="#d4a05310" stroke="#d4a053" stroke-width="2"/>
+        <text x="280" y="35" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600">PHASE 1 &mdash; First Principle</text>
+        <text x="378" y="58" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600" text-anchor="middle">AI Properties</text>
+        <text x="378" y="78" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">Schematized every component</text>
+        <text x="378" y="94" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">into JSON structured output</text>
+        <text x="378" y="110" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">the LLM could understand</text>
+        <text x="378" y="130" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">&gt;50% token reduction</text>
+        <text x="378" y="144" fill="#6abf7b" font-family="IBM Plex Sans, sans-serif" font-size="10" text-anchor="middle">Hugely improved model focus</text>
 
-        <!-- Smart Sections box -->
-        <rect x="360" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#d45b6e66" stroke-width="1.5"/>
-        <text x="500" y="196" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">Smart Sections</text>
-        <text x="500" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">0&rarr;1 product launch</text>
-        <text x="500" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">LLM-powered authoring that</text>
-        <text x="500" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">generates data-rich page sections</text>
-        <rect x="404" y="282" width="80" height="10" rx="3" fill="#d45b6e22"/>
-        <text x="494" y="290" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="11">~60K MAU</text>
+        <!-- Arrow: Phase 1 → Phase 2 -->
+        <path d="M493,80 L513,80" stroke="#e8e6e1" stroke-width="2" opacity="0.5"/>
+        <path d="M508,74 L518,80 L508,86" stroke="#e8e6e1" stroke-width="2" fill="none" opacity="0.5"/>
 
-        <!-- Next-gen Authoring box -->
-        <rect x="680" y="170" width="280" height="130" rx="10" fill="#151518" stroke="#9b7bd466" stroke-width="1.5"/>
-        <text x="820" y="196" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">Next-Gen Authoring</text>
-        <text x="820" y="218" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">In progress</text>
-        <text x="820" y="250" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Content-oriented: LLM generates</text>
-        <text x="820" y="268" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">full page structure in one pass</text>
-        <text x="820" y="290" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Git-backed workspaces &middot; versioned state</text>
+        <!-- Phase 2: Smart Sections -->
+        <rect x="526" y="10" width="220" height="140" rx="12" fill="#d45b6e10" stroke="#d45b6e" stroke-width="2"/>
+        <text x="538" y="35" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600">PHASE 2 &mdash; Scope Down</text>
+        <text x="636" y="60" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600" text-anchor="middle">Smart Sections</text>
+        <text x="636" y="82" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Scoped down from full-page</text>
+        <text x="636" y="99" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">to section generation &mdash;</text>
+        <text x="636" y="116" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">well-scoped risks, real value</text>
+        <text x="636" y="137" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">~60K MAU &middot; GA</text>
 
-        <!-- Arrows between orchestration boxes -->
-        <line x1="325" y1="235" x2="355" y2="235" stroke="#8a8890" stroke-width="1.5" marker-end="url(#ai-ag)"/>
-        <line x1="645" y1="235" x2="675" y2="235" stroke="#8a8890" stroke-width="1.5" marker-end="url(#ai-ag)"/>
+        <!-- Arrow: Phase 2 → Phase 3 -->
+        <path d="M751,80 L771,80" stroke="#e8e6e1" stroke-width="2" opacity="0.5"/>
+        <path d="M766,74 L776,80 L766,86" stroke="#e8e6e1" stroke-width="2" fill="none" opacity="0.5"/>
 
-        <!-- AI Services Layer — bottom -->
-        <rect x="10" y="340" width="980" height="130" rx="12" fill="#5b8fd406" stroke="#5b8fd4" stroke-width="1.5" stroke-dasharray="8 4"/>
-        <text x="30" y="365" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">AI SERVICES (Microsoft Copilot Stack)</text>
+        <!-- Phase 3: Vibe Authoring -->
+        <rect x="784" y="10" width="206" height="140" rx="12" fill="#9b7bd410" stroke="#9b7bd4" stroke-width="2"/>
+        <text x="796" y="35" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600">PHASE 3 &mdash; Scope Up</text>
+        <text x="887" y="60" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600" text-anchor="middle">Vibe Authoring</text>
+        <text x="887" y="82" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Full-page AI authoring.</text>
+        <text x="887" y="99" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">LLM writes directly to</text>
+        <text x="887" y="116" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">our JSON page format</text>
+        <text x="887" y="137" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">rolling out</text>
 
-        <rect x="40" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
-        <text x="140" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">LLM Gateway</text>
-        <text x="140" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Copilot orchestration</text>
+        <!-- Detailed architecture below — how Vibe Authoring works -->
+        <text x="10" y="185" fill="#8a8890" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500">HOW VIBE AUTHORING WORKS &mdash; content-first orchestration</text>
 
-        <rect x="280" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
-        <text x="380" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Prompt Routing</text>
-        <text x="380" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Context assembly &amp; caching</text>
+        <rect x="10" y="200" width="980" height="310" rx="12" fill="#9b7bd406" stroke="#9b7bd433" stroke-width="1.5"/>
 
-        <rect x="520" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
-        <text x="620" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Evaluation</text>
-        <text x="620" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Quality &amp; perf metrics</text>
+        <!-- Left side: the harness -->
+        <rect x="30" y="220" width="300" height="270" rx="10" fill="#151518" stroke="#d4a05355" stroke-width="1.5"/>
+        <text x="180" y="248" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" text-anchor="middle">Page Harness</text>
+        <text x="180" y="270" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="middle">Represents full page state</text>
 
-        <rect x="760" y="380" width="200" height="70" rx="10" fill="#5b8fd40e" stroke="#5b8fd433" stroke-width="1.5"/>
-        <text x="860" y="410" fill="#5b8fd4" font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">Safety / RAI</text>
-        <text x="860" y="430" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="middle">Responsible AI guardrails</text>
+        <!-- JSON representation inside harness -->
+        <rect x="50" y="288" width="260" height="180" rx="8" fill="#0c0c0e" stroke="#2a2a32" stroke-width="1"/>
+        <text x="68" y="312" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">{</text>
+        <text x="82" y="332" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="12">"sections"</text><text x="178" y="332" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">: [</text>
+        <text x="96" y="352" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">{</text>
+        <text x="110" y="372" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="12">"type"</text><text x="160" y="372" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">:</text><text x="172" y="372" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="12">"hero"</text><text x="220" y="372" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">,</text>
+        <text x="110" y="392" fill="#d45b6e" font-family="IBM Plex Mono, monospace" font-size="12">"props"</text><text x="166" y="392" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">:</text><text x="178" y="392" fill="#8a8890" font-family="IBM Plex Mono, monospace" font-size="12">{ ... }</text>
+        <text x="96" y="412" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">},</text>
+        <text x="96" y="432" fill="#8a8890" font-family="IBM Plex Mono, monospace" font-size="12">// AI edits here directly</text>
+        <text x="82" y="452" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">]</text>
+        <text x="68" y="468" fill="#5a5960" font-family="IBM Plex Mono, monospace" font-size="12">}</text>
 
-        <!-- Vertical connectors: orchestration → services -->
-        <line x1="180" y1="300" x2="140" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
-        <line x1="500" y1="300" x2="380" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
-        <line x1="500" y1="300" x2="620" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
-        <line x1="820" y1="300" x2="860" y2="375" stroke="#e8e6e1" stroke-width="1.5" opacity="0.25" marker-end="url(#ai-ag)"/>
+        <!-- Middle: LLM agent -->
+        <rect x="380" y="280" width="240" height="150" rx="14" fill="#151518" stroke="#9b7bd4" stroke-width="2"/>
+        <text x="500" y="314" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" text-anchor="middle">LLM Agent</text>
+        <text x="500" y="340" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Reads page state</text>
+        <text x="500" y="360" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">Generates JSON diffs</text>
+        <text x="500" y="380" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="middle">directly to page format</text>
+
+        <!-- Bidirectional arrows: Harness ↔ LLM (chevron style) -->
+        <path d="M335,340 L370,340" stroke="#9b7bd4" stroke-width="2"/>
+        <path d="M365,334 L375,340 L365,346" stroke="#9b7bd4" stroke-width="2" fill="none"/>
+        <path d="M375,370 L340,370" stroke="#d4a053" stroke-width="2"/>
+        <path d="M345,364 L335,370 L345,376" stroke="#d4a053" stroke-width="2" fill="none"/>
+        <text x="355" y="330" fill="#9b7bd4" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">state</text>
+        <text x="355" y="388" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">edits</text>
+
+        <!-- Right side: what this enables -->
+        <rect x="670" y="220" width="300" height="270" rx="10" fill="#151518" stroke="#6abf7b44" stroke-width="1.5"/>
+        <text x="820" y="248" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" text-anchor="middle">Why This Works</text>
+
+        <text x="690" y="280" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="13">01</text>
+        <text x="720" y="280" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">Explicit state &mdash; LLM sees</text>
+        <text x="720" y="298" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">the whole page, not fragments</text>
+
+        <text x="690" y="332" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="13">02</text>
+        <text x="720" y="332" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">Schema-validated output &mdash;</text>
+        <text x="720" y="350" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">AI Properties ensures correctness</text>
+
+        <text x="690" y="384" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="13">03</text>
+        <text x="720" y="384" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">Proven success from coding</text>
+        <text x="720" y="402" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">agents (Claude, GitHub</text>
+        <text x="720" y="420" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">Copilot)</text>
+
+        <text x="690" y="454" fill="#d4a053" font-family="IBM Plex Mono, monospace" font-size="13">04</text>
+        <text x="720" y="454" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">Versionable &mdash; every edit is</text>
+        <text x="720" y="472" fill="#e8e6e1" font-family="IBM Plex Sans, sans-serif" font-size="13">a diffable JSON snapshot</text>
+
+        <!-- Arrow from LLM to Why (chevron style) -->
+        <path d="M625,355 L660,355" stroke="#6abf7b66" stroke-width="2"/>
+        <path d="M655,349 L665,355 L655,361" stroke="#6abf7b66" stroke-width="2" fill="none"/>
       </svg>
     </div>
     <!-- Legend -->
     <div style="display: flex; gap: clamp(16px, 2vw, 32px); flex-wrap: wrap; opacity: 0.7;">
-      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d4a053;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d4a053;">Orchestration</strong> &mdash; what I designed &amp; built</span></div>
-      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d45b6e;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d45b6e;">User flow</strong> &mdash; Pages editing experience</span></div>
-      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#5b8fd4;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#5b8fd4;">AI Services</strong> &mdash; Microsoft Copilot platform</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d4a053;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d4a053;">AI Properties</strong> &mdash; schema foundation I designed</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#d45b6e;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#d45b6e;">Smart Sections</strong> &mdash; 0&rarr;1 shipped product</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:8px;height:8px;border-radius:50%;background:#9b7bd4;display:inline-block;"></span><span style="font-size: clamp(11px, 0.85vw, 14px); color: var(--text-muted);"><strong style="color:#9b7bd4;">Vibe Authoring</strong> &mdash; full-page AI agent, rolling out</span></div>
     </div>
-  <div class="notes">Three things I built in the orchestration layer: (1) AI Properties — schema platform, 30% token savings, adopted org-wide. (2) Smart Sections — 0 to 1, 60K MAU. (3) Next-gen authoring — content-oriented means the LLM generates the whole page structure in one pass (like code generation), rather than calling tools one at a time. The bottom layer is Microsoft's Copilot stack — I integrated with it, didn't build it.</div>
+  <div class="notes">Walk through the progression: (1) Problem: team tried command-based editing where the LLM calls tools. It failed — LLM couldn't use tools reliably and the tool surface was incomplete. (2) AI Properties: I schematized every page component into clean JSON so the LLM could understand what a SharePoint page is and what it can do. >50% token reduction, hugely improved model focus. (3) Smart Sections: scoped down from full page to section generation. Well-calculated risks, shipped real value, 60K MAU. (4) Vibe Authoring: now fully powered to do full-page AI authoring. Content-first means the LLM writes directly to our JSON page format — like code generation. The harness represents the full page state, the LLM reads it and generates diffs. No fragile tool chain.</div>
 </div>
 
 <!-- ═══════════ SLIDE 8: AI — DECISIONS & LEARNINGS ═══════════ -->
@@ -619,16 +649,16 @@ body.show-notes .notes {
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Content-first vs. tool-oriented architecture</p>
-          <p>Initial plan: LLM calls UI tools one-by-one (tool-oriented). I built a POC where the LLM generates the full page structure in one pass (content-first) &mdash; like code generation instead of button-clicking. Concrete demo convinced leadership to pivot the entire approach.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why I built AI Properties first</p>
+          <p>The LLM couldn&rsquo;t understand SharePoint Pages &mdash; components were unstructured blobs. I designed a schema-driven platform that converted every component into clean JSON structured output the LLM could grasp: what a page is, what&rsquo;s supported, what the constraints are. Over 50% token reduction and hugely improved model focus. This became the foundation everything else was built on.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Scoping Smart Sections under uncertainty</p>
-          <p>AI landscape was shifting weekly &mdash; team worried about building things that&rsquo;d be obsolete in months. Partnered with a senior engineer to carve out Smart Sections as a focused, shippable scenario. Two parallel tracks: infrastructure (existing system couldn&rsquo;t generate web parts) + LLM integration. Delivered prototype, built confidence across leadership.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why we scoped down to sections</p>
+          <p>Full-page editing was too ambitious given LLM capabilities at the time. I scoped down to section generation &mdash; a well-bounded problem with calculable risks. This let us ship real customer value and learn what worked, while building infrastructure that would scale to full-page later.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Managing team anxiety about obsolescence</p>
-          <p>Team feared their work could become obsolete in months. Made prioritization transparent &mdash; laid out ROI for each bet, talked openly about risks, agreed as a group. Shifted from fear-based to evidence-based decision-making.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why content-first over tool-oriented</p>
+          <p>Team had tried tool-oriented: LLM calls UI tools one-by-one. It was fragile &mdash; LLM couldn&rsquo;t use our tools reliably and the tool surface was incomplete. I built a POC where the LLM writes directly to our JSON page format in one pass. Concrete demo convinced leadership to adopt this architecture for Vibe Authoring.</p>
         </div>
       </div>
       <div class="stack gap-16">
@@ -637,8 +667,8 @@ body.show-notes .notes {
           <p>Moved so fast that documentation and coding discipline slipped. Cutting corners created tech debt that slowed us down later. Learned that LLM integration delivers more impact when built on strong engineering fundamentals &mdash; especially in a fast-moving space.</p>
         </div>
         <div class="card-accent stack gap-8">
-          <p style="font-size: 14px; font-weight: 500;">AI Properties &mdash; org-wide impact</p>
-          <p>Designed a schema-driven platform so any team could define LLM-safe representations for their components. Reduced token usage by <strong style="color: var(--rose);">30%</strong>, improved generation quality, reduced model confusion. Became the foundation that unblocked multiple partner teams.</p>
+          <p style="font-size: 14px; font-weight: 500;">Impact summary</p>
+          <p><strong style="color: var(--rose);">AI Properties:</strong> Org-wide platform, <strong style="color: var(--rose);">&gt;50%</strong> token reduction, unblocked multiple partner teams.<br><strong style="color: var(--rose);">Smart Sections:</strong> 0&rarr;1 shipped, <strong style="color: var(--rose);">~60K MAU</strong>.<br><strong style="color: var(--rose);">Vibe Authoring:</strong> Full-page AI authoring, rolling out to production.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--green); font-weight: 500;">Growth arc: from CoAuth to AI</p>
@@ -647,7 +677,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">Key decisions: content-first POC was the turning point — explain the analogy (code generation vs button clicking). Scoping story shows you can make bets under uncertainty. Team anxiety card shows people leadership. Mistake is honest and specific — not "I worked too hard." AI Properties impact is the technical highlight. Growth arc ties both projects together for the interviewer.</div>
+  <div class="notes">Each left card answers "why" for a key decision. AI Properties first because LLM couldn't understand Pages without it. Scoped to sections because full-page was too risky given LLM limits. Content-first because tool-oriented had already failed. Right side: honest mistake, impact summary with all three metrics, and the growth arc that ties CoAuth and AI together. The three "why" cards show technical judgment under ambiguity — exactly what interviewers want to hear.</div>
 </div>
 
 <!-- ═══════════ SLIDE 9: CLOSING ═══════════ -->
