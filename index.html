@@ -360,19 +360,19 @@ body.show-notes .notes {
       <div class="stack gap-8" style="overflow: hidden;">
         <div class="card stack gap-4" style="border-color: #9b7bd433; padding: clamp(10px, 1vw, 16px);">
           <p style="font-size: clamp(13px, 1.1vw, 17px); color: var(--purple); font-weight: 600;">Fluid Framework Team</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Defines the protocol &mdash; total-order broadcast. Owns the client SDK, SharedTree DDS, and merge semantics.</p>
+          <p style="font-size: clamp(12px, 0.95vw, 15px);">Built 1:1 mapping between Pages data structure and Fluid DDS &mdash; the hydration/dehydration bridge enabling integration.</p>
         </div>
         <div class="card stack gap-4" style="border-color: #4ac8c833; padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); color: #4ac8c8; font-weight: 600;">Fluid APIs Team</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Storage service for Fluid data &mdash; persists operations and snapshots reliably.</p>
+          <p style="font-size: clamp(13px, 1.1vw, 17px); color: #4ac8c8; font-weight: 600;">Fluid APIs + Push Teams</p>
+          <p style="font-size: clamp(12px, 0.95vw, 15px);">Collaborated to design a standalone architecture &mdash; SharePoint&rsquo;s .aspx file format needed compatibility that standard Fluid integration couldn&rsquo;t provide.</p>
         </div>
-        <div class="card stack gap-4" style="border-color: #d4a05333; padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); color: var(--accent); font-weight: 600;">Push Service Team</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">WebSocket service for operation sequencing and real-time broadcasting to all clients.</p>
+        <div class="card stack gap-4" style="border-color: #6abf7b33; padding: clamp(10px, 1vw, 16px);">
+          <p style="font-size: clamp(13px, 1.1vw, 17px); color: var(--green); font-weight: 600;">Unified Observability</p>
+          <p style="font-size: clamp(12px, 0.95vw, 15px);">Integrated Push and Fluid APIs metrics into a single feature dashboard for aggregated cross-service health visibility.</p>
         </div>
         <div class="card-accent stack gap-4" style="padding: clamp(10px, 1vw, 16px);">
-          <p style="font-size: clamp(13px, 1.1vw, 17px); font-weight: 600; color: var(--blue);">Our Role (Pages App)</p>
-          <p style="font-size: clamp(12px, 0.95vw, 15px);">Build the app integrating all three. Drove cross-team alignment on a non-standard storage model.</p>
+          <p style="font-size: clamp(13px, 1.1vw, 17px); font-weight: 600; color: var(--blue);">My Role &mdash; Tech Lead</p>
+          <p style="font-size: clamp(12px, 0.95vw, 15px);">Drove the end-to-end integration across all 4 teams. Built the standalone architecture and drove it to completion.</p>
         </div>
         <div style="display:flex; gap: 20px;">
           <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">330K</div><div class="metric-label">DAU</div></div>
@@ -462,35 +462,35 @@ body.show-notes .notes {
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Hackathon to production</p>
-          <p>Incubated the concept in a hackathon, built POC in 1 month. Initially resource-constrained, spent too much time on implementation details before setting up swimlanes.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Standalone architecture for .aspx compatibility</p>
+          <p>SharePoint Pages uses .aspx files with existing list item storage &mdash; fundamentally different from Loop/Whiteboard&rsquo;s .fluid files. Collaborated with Fluid APIs and Push teams to design and build a standalone architecture that maintained compatibility. Drove it to completion as tech lead.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Concurrent edit data loss</p>
-          <p>Original section layout schema caused data loss: removing a column while another user adds content drops their work. Redesigned to a fixed 3-section model with visibility metadata &mdash; sections are hidden, never removed. Also introduced constraint-based conflict resolution (First Writer Wins) for concurrent control edits.</p>
+          <p>Original section layout schema caused data loss: removing a column while another user adds content drops their work. Redesigned to a fixed 3-section model with visibility metadata &mdash; sections are hidden, never removed. Introduced constraint-based conflict resolution (First Writer Wins) for concurrent edits.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Unblocking partner teams</p>
-          <p>CoAuth rollout blocked by reliability issues from ODSP Push and OpStream teams whose fixes weren&rsquo;t on their near-term roadmap. Drafted document outlining issue, user impact, and solutions. Offered direct team contribution. Unblocked within a week.</p>
+          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Cross-service observability</p>
+          <p>Aligned Push and Fluid APIs metrics into our feature dashboard &mdash; giving aggregated health visibility across all 4 teams. Made it possible to trace issues end-to-end from client through service layers.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--rose); font-weight: 500;">Mistake: late delegation</p>
-          <p>Held onto too much implementation. At peak, team grew to 7 engineers (mix of senior/junior). Once I broke work into swimlanes &mdash; seniors on service integration (OpStream, Push), juniors on client features (presence, exclusive sessions, undo/redo, data loss dashboard) &mdash; things accelerated.</p>
+          <p>Held onto too much implementation. At peak, team grew to 6&ndash;8 engineers (mix of senior/junior). Once I broke work into swimlanes &mdash; seniors on service integration, juniors on client features (presence, exclusive sessions, undo/redo) &mdash; things accelerated.</p>
         </div>
         <div class="card-accent stack gap-8">
           <p style="font-size: 14px; font-weight: 500;">What I'd do differently</p>
-          <p>Set up clear swimlanes from the start. Focus on high-level architecture, let others drive implementation. Would have scaled me faster and grown the team at the same time.</p>
+          <p>Set up clear swimlanes from the start. Focus on architecture and cross-team alignment, let others drive implementation. Would have scaled me faster and grown the team at the same time.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 14px; color: var(--green); font-weight: 500;">Lesson</p>
-          <p>Quality and trust outweigh speed. Every data loss incident reinforced that. Delegation isn&rsquo;t just about reducing load &mdash; it&rsquo;s about enabling the team to scale faster and giving others growth opportunities.</p>
+          <p>Cross-team collaboration requires clear problem statements, proposed alternatives, and efficient communication. Delegation isn&rsquo;t just about reducing load &mdash; it&rsquo;s about enabling the team to scale faster and giving others growth opportunities.</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="notes">The 3-section model is a great concrete example: original design removed sections on layout change, causing data loss with concurrent edits. Fix: always keep 3 sections, toggle visibility. Constraint-based FWW prevents concurrent control edit conflicts. Be honest about delegation mistake. Mention exclusive session design for publish/schedule (presence-based freeze).</div>
+  <div class="notes">Lead with the standalone architecture story: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. The 3-section model is a concrete technical decision: sections hidden not removed. Cross-service observability shows you thought beyond just your code. Be honest about delegation — swimlanes were the fix. Cross-team lesson: clear problem statements, proposed alternatives, efficient communication.</div>
 </div>
 
 <!-- ═══════════ SLIDE 6: AI AUTHORING — THE PROBLEM ═══════════ -->
