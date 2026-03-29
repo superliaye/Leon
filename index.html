@@ -358,7 +358,7 @@ body.show-notes .notes {
     <div style="display: flex; gap: clamp(10px, 1vw, 18px); flex-wrap: wrap; align-items: center;">
       <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#e07888;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #e07888; font-weight:500;">Pages App</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; our team</span></div>
       <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#7eaee6;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #7eaee6; font-weight:500;">Fluid Framework</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; protocol &amp; SDK</span></div>
-      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#6abf7b;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #6abf7b; font-weight:500;">Fluid APIs</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; storage</span></div>
+      <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:#4ac8c8;display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: #4ac8c8; font-weight:500;">Fluid APIs</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; storage</span></div>
       <div style="display:flex; align-items:center; gap: 6px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block;"></span><span style="font-family:var(--font-mono); font-size: clamp(12px, 1vw, 15px); color: var(--accent); font-weight:500;">Push Service</span><span style="font-size: clamp(11px, 0.85vw, 13px); color: var(--text-muted);">&mdash; sequencing &amp; broadcast</span></div>
       <div style="margin-left: auto; display:flex; gap: 20px;">
         <div class="metric"><div class="metric-value" style="font-size: clamp(20px, 2vw, 32px);">330K</div><div class="metric-label">DAU</div></div>
@@ -373,13 +373,13 @@ body.show-notes .notes {
               <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8a8fd4"/></marker>
             </defs>
 
-            <!-- Pages App — red box -->
-            <rect x="10" y="10" width="560" height="310" rx="14" fill="#d45b6e08" stroke="#e07888" stroke-width="2"/>
-            <text x="30" y="40" fill="#e07888" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Pages App</text>
+            <!-- Pages App — red dashed box, top slightly lower -->
+            <rect x="10" y="35" width="970" height="280" rx="14" fill="#d45b6e06" stroke="#e07888" stroke-width="2" stroke-dasharray="10 5"/>
+            <text x="30" y="58" fill="#e07888" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Pages App</text>
 
-            <!-- Fluid Framework — blue box, overlapping -->
-            <rect x="320" y="10" width="670" height="580" rx="14" fill="#5b8fd408" stroke="#7eaee6" stroke-width="2"/>
-            <text x="340" y="40" fill="#7eaee6" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Fluid Framework</text>
+            <!-- Fluid Framework — blue dashed box, overlapping, starts higher -->
+            <rect x="320" y="10" width="670" height="580" rx="14" fill="#5b8fd406" stroke="#7eaee6" stroke-width="2" stroke-dasharray="10 5"/>
+            <text x="340" y="33" fill="#7eaee6" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">Fluid Framework</text>
 
             <!-- Rendering Layer box -->
             <rect x="30" y="65" width="260" height="230" rx="10" fill="#151518" stroke="#2a2a32" stroke-width="1.5"/>
@@ -415,9 +415,9 @@ body.show-notes .notes {
             <!-- Pages Data ↔ SharedTree arrows -->
             <line x1="275" y1="196" x2="375" y2="196" stroke="#8a8fd4" stroke-width="2.5" marker-start="url(#al)" marker-end="url(#ar)"/>
 
-            <!-- Fluid APIs box -->
-            <rect x="350" y="400" width="240" height="120" rx="14" fill="#6abf7b0a" stroke="#6abf7b88" stroke-width="1.5"/>
-            <text x="380" y="435" fill="#6abf7b" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600">Fluid APIs</text>
+            <!-- Fluid APIs box — cyan/teal border -->
+            <rect x="350" y="400" width="240" height="120" rx="14" fill="#4ac8c80a" stroke="#4ac8c888" stroke-width="1.5"/>
+            <text x="380" y="435" fill="#4ac8c8" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600">Fluid APIs</text>
             <text x="380" y="460" fill="#8a8890" font-family="IBM Plex Sans, sans-serif" font-size="13">Ops &amp; snapshot storage</text>
 
             <!-- Push Service box -->
