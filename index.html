@@ -731,43 +731,6 @@ body.show-notes .notes {
   <div class="notes">Walk through the progression: (1) Problem: team tried command-based editing where the LLM calls tools. It failed — LLM couldn't use tools reliably and the tool surface was incomplete. (2) AI Properties: I schematized every page component into clean JSON so the LLM could understand what a SharePoint page is and what it can do. >50% token reduction, significantly improved model focus. (3) Smart Sections: scoped down from full page to section generation. Well-calculated risks, shipped real value, 60K MAU. (4) Vibe Authoring: now fully powered to do full-page AI authoring. Content-first means the LLM writes directly to our JSON page format — like code generation. The harness represents the full page state, the LLM reads it and generates diffs. No fragile tool chain.</div>
 </div>
 
-<!-- ═══════════ SLIDE 8: AI — DECISIONS & LEARNINGS ═══════════ -->
-<div class="slide">
-  <div class="stack gap-24">
-    <div class="stack gap-8">
-      <h3 style="color: var(--rose);">AI Authoring</h3>
-      <h2>Decisions &amp; Impact</h2>
-    </div>
-    <div class="split">
-      <div class="stack gap-16">
-        <div class="card stack gap-8">
-          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Why I built AI Properties first</p>
-          <p>The LLM couldn&rsquo;t understand SharePoint Pages &mdash; components were unstructured blobs. I designed a schema-driven platform that converted every component into clean JSON structured output the LLM could grasp: what a page is, what&rsquo;s supported, what the constraints are. Over 50% token reduction and significantly improved model focus. Smart Sections, Vibe Authoring, and ~5 other features were all built on top of this.</p>
-        </div>
-        <div class="card stack gap-8">
-          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Why we scoped down to sections</p>
-          <p>Full-page editing was too ambitious given LLM capabilities at the time. I scoped down to section generation &mdash; a well-bounded problem with calculable risks. This let us ship real customer value and learn what worked, while building infrastructure that would scale to full-page later.</p>
-        </div>
-        <div class="card stack gap-8">
-          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Why content-first over tool-oriented</p>
-          <p>Team had tried tool-oriented: LLM calls UI tools one-by-one. It was fragile &mdash; LLM couldn&rsquo;t use our tools reliably and the tool surface was incomplete. I built a POC where the LLM writes directly to our JSON page format in one pass. The POC demo led to the team adopting this architecture for Vibe Authoring.</p>
-        </div>
-      </div>
-      <div class="stack gap-16">
-        <div class="card-accent stack gap-8">
-          <p style="font-size: 40px; font-weight: 600;">Impact summary</p>
-          <p><strong style="color: var(--rose);">AI Properties:</strong> Org-wide platform, <strong style="color: var(--rose);">&gt;50%</strong> token reduction, unblocked multiple partner teams.<br><strong style="color: var(--rose);">Smart Sections:</strong> 0&rarr;1 shipped, <strong style="color: var(--rose);">~60K MAU</strong>.<br><strong style="color: var(--rose);">Vibe Authoring:</strong> Full-page AI authoring, rolling out to production.</p>
-        </div>
-        <div class="card stack gap-8">
-          <p style="font-size: 40px; color: var(--green); font-weight: 600;">Growth arc: from CoAuth to AI</p>
-          <p>CoAuth taught me to delegate and prioritize reliability over speed. AI Authoring taught me to navigate ambiguity and move fast without losing rigor. Applied the swimlane lesson from day one. Two very different modes of engineering &mdash; and the lessons from one directly informed the other.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="notes">Each left card answers "why" for a key decision. AI Properties first because LLM couldn't understand Pages without it. Scoped to sections because full-page was too risky given LLM limits. Content-first because tool-oriented had already failed. Right side: impact summary with all three metrics, and the growth arc that ties CoAuth and AI together. The three "why" cards show technical judgment under ambiguity — exactly what interviewers want to hear.</div>
-</div>
-
 <!-- ═══════════ SLIDE 9: CLOSING ═══════════ -->
 <div class="slide title-slide">
   <div class="stack gap-24">
