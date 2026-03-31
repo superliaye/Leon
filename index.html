@@ -547,22 +547,22 @@ body.show-notes .notes {
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Standalone architecture for SharePoint Pages</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">From hackathon POC to leadership buy-in</p>
+          <p>Built a POC that made real-time coauthoring visible and surfaced the technical challenges transparently. Leadership hesitated on signing a large investment &mdash; the POC turned an abstract pitch into a concrete, testable bet. Made the cost, risk, and payoff tangible, which ultimately secured the buy-in.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Bridging two worlds: Fluid protocol meets SharePoint storage</p>
           <p>SharePoint Pages has its own existing file format and storage &mdash; fundamentally different from Loop/Whiteboard&rsquo;s native Fluid files. Collaborated with Fluid APIs and Push teams to design and build a standalone architecture that maintained compatibility. Drove it to completion as tech lead.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Engineering quality &amp; guardrails</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Designing for safe contribution at scale</p>
           <p>Invested in high-quality UX (presence indicators, smooth real-time sync), performance optimization to avoid render blocking, and rigorous data loss incident response. Designed the architecture with schema constraints and validation so non-senior engineers could safely contribute features without risking data integrity.</p>
-        </div>
-        <div class="card stack gap-8">
-          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Cross-service observability</p>
-          <p>Aligned Push and Fluid APIs metrics into our feature dashboard &mdash; giving aggregated health visibility across all 4 teams. Made it possible to trace issues end-to-end from client through service layers.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 20px; color: var(--rose); font-weight: 600;">Trade-off: rollout speed for quality</p>
-          <p>Deliberately slowed rollout velocity to avoid data loss. Spent 3 months building a dedicated data-loss dashboard, fixing data-loss related issues, and adding cross-team metrics dashboards &mdash; ensuring we could detect and resolve problems end-to-end before scaling to broader audiences.</p>
+          <p style="font-size: 20px; color: var(--rose); font-weight: 600;">Slowed down to ship right: 3 months on reliability</p>
+          <p>Deliberately slowed rollout velocity to avoid data loss. Spent 3 months building a dedicated data-loss dashboard, fixing data-loss related issues, and adding cross-team observability &mdash; aligning Push and Fluid APIs metrics into a unified dashboard across all 4 teams. Ensured we could detect and resolve problems end-to-end before scaling to broader audiences.</p>
         </div>
         <div class="card stack gap-8">
           <p style="font-size: 20px; color: var(--green); font-weight: 600;">Lesson</p>
@@ -571,7 +571,7 @@ body.show-notes .notes {
       </div>
     </div>
   </div>
-  <div class="notes">Lead with the standalone architecture story: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. The 3-section model is a concrete technical decision: sections hidden not removed. Cross-service observability shows you thought beyond just your code. Trade-off: chose quality over speed — invested 3 months in data-loss dashboard and cross-team metrics before scaling rollout. Cross-team lesson: clear problem statements, proposed alternatives, efficient communication.</div>
+  <div class="notes">Lead with the POC story: hackathon prototype made the feature real and surfaced costs transparently — that's what got leadership to sign off. Standalone architecture: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. Safe contribution: schema constraints let junior engineers ship without risking data integrity. Reliability trade-off: chose quality over speed — invested 3 months in data-loss dashboard and cross-team observability before scaling rollout.</div>
 </div>
 
 <!-- ═══════════ SLIDE 6: AI AUTHORING — SECTION INTRO ═══════════ -->
