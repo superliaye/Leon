@@ -547,27 +547,31 @@ body.show-notes .notes {
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Standalone architecture for SharePoint Pages</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Standalone architecture for SharePoint Pages</p>
           <p>SharePoint Pages has its own existing file format and storage &mdash; fundamentally different from Loop/Whiteboard&rsquo;s native Fluid files. Collaborated with Fluid APIs and Push teams to design and build a standalone architecture that maintained compatibility. Drove it to completion as tech lead.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Engineering quality &amp; guardrails</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Engineering quality &amp; guardrails</p>
           <p>Invested in high-quality UX (presence indicators, smooth real-time sync), performance optimization to avoid render blocking, and rigorous data loss incident response. Designed the architecture with schema constraints and validation so non-senior engineers could safely contribute features without risking data integrity.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Cross-service observability</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Cross-service observability</p>
           <p>Aligned Push and Fluid APIs metrics into our feature dashboard &mdash; giving aggregated health visibility across all 4 teams. Made it possible to trace issues end-to-end from client through service layers.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Lesson</p>
+          <p style="font-size: 20px; color: var(--rose); font-weight: 600;">Trade-off: rollout speed for quality</p>
+          <p>Deliberately slowed rollout velocity to avoid data loss. Spent 3 months building a dedicated data-loss dashboard, fixing data-loss related issues, and adding cross-team metrics dashboards &mdash; ensuring we could detect and resolve problems end-to-end before scaling to broader audiences.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 20px; color: var(--green); font-weight: 600;">Lesson</p>
           <p>Cross-team collaboration requires clear problem statements, proposed alternatives, and efficient communication. Delegation isn&rsquo;t just about reducing load &mdash; it&rsquo;s about enabling the team to scale faster and giving others growth opportunities.</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="notes">Lead with the standalone architecture story: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. The 3-section model is a concrete technical decision: sections hidden not removed. Cross-service observability shows you thought beyond just your code. Cross-team lesson: clear problem statements, proposed alternatives, efficient communication.</div>
+  <div class="notes">Lead with the standalone architecture story: Pages uses .aspx files, not .fluid — needed a custom solution across 4 teams. The 3-section model is a concrete technical decision: sections hidden not removed. Cross-service observability shows you thought beyond just your code. Trade-off: chose quality over speed — invested 3 months in data-loss dashboard and cross-team metrics before scaling rollout. Cross-team lesson: clear problem statements, proposed alternatives, efficient communication.</div>
 </div>
 
 <!-- ═══════════ SLIDE 6: AI AUTHORING — SECTION INTRO ═══════════ -->
@@ -737,25 +741,25 @@ body.show-notes .notes {
     <div class="split">
       <div class="stack gap-16">
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why I built AI Properties first</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Why I built AI Properties first</p>
           <p>The LLM couldn&rsquo;t understand SharePoint Pages &mdash; components were unstructured blobs. I designed a schema-driven platform that converted every component into clean JSON structured output the LLM could grasp: what a page is, what&rsquo;s supported, what the constraints are. Over 50% token reduction and significantly improved model focus. Smart Sections, Vibe Authoring, and ~5 other features were all built on top of this.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why we scoped down to sections</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Why we scoped down to sections</p>
           <p>Full-page editing was too ambitious given LLM capabilities at the time. I scoped down to section generation &mdash; a well-bounded problem with calculable risks. This let us ship real customer value and learn what worked, while building infrastructure that would scale to full-page later.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--accent); font-weight: 500;">Why content-first over tool-oriented</p>
+          <p style="font-size: 20px; color: var(--accent); font-weight: 600;">Why content-first over tool-oriented</p>
           <p>Team had tried tool-oriented: LLM calls UI tools one-by-one. It was fragile &mdash; LLM couldn&rsquo;t use our tools reliably and the tool surface was incomplete. I built a POC where the LLM writes directly to our JSON page format in one pass. The POC demo led to the team adopting this architecture for Vibe Authoring.</p>
         </div>
       </div>
       <div class="stack gap-16">
         <div class="card-accent stack gap-8">
-          <p style="font-size: 14px; font-weight: 500;">Impact summary</p>
+          <p style="font-size: 20px; font-weight: 600;">Impact summary</p>
           <p><strong style="color: var(--rose);">AI Properties:</strong> Org-wide platform, <strong style="color: var(--rose);">&gt;50%</strong> token reduction, unblocked multiple partner teams.<br><strong style="color: var(--rose);">Smart Sections:</strong> 0&rarr;1 shipped, <strong style="color: var(--rose);">~60K MAU</strong>.<br><strong style="color: var(--rose);">Vibe Authoring:</strong> Full-page AI authoring, rolling out to production.</p>
         </div>
         <div class="card stack gap-8">
-          <p style="font-size: 14px; color: var(--green); font-weight: 500;">Growth arc: from CoAuth to AI</p>
+          <p style="font-size: 20px; color: var(--green); font-weight: 600;">Growth arc: from CoAuth to AI</p>
           <p>CoAuth taught me to delegate and prioritize reliability over speed. AI Authoring taught me to navigate ambiguity and move fast without losing rigor. Applied the swimlane lesson from day one. Two very different modes of engineering &mdash; and the lessons from one directly informed the other.</p>
         </div>
       </div>
