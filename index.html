@@ -727,6 +727,47 @@ body.show-notes .notes {
   <div class="notes">Walk through the progression: (1) Problem: team tried command-based editing where the LLM calls tools. It failed — LLM couldn't use tools reliably and the tool surface was incomplete. (2) AI Properties: I schematized every page component into clean JSON so the LLM could understand what a SharePoint page is and what it can do. >50% token reduction, significantly improved model focus. (3) Smart Sections: scoped down from full page to section generation. Well-calculated risks, shipped real value, 60K MAU. (4) Vibe Authoring: now fully powered to do full-page AI authoring. Content-first means the LLM writes directly to our JSON page format — like code generation. The harness represents the full page state, the LLM reads it and generates diffs. No fragile tool chain.</div>
 </div>
 
+<!-- ═══════════ SLIDE 8: AI — DECISIONS & IMPACT ═══════════ -->
+<div class="slide">
+  <div class="stack gap-24">
+    <div class="stack gap-8">
+      <h3 style="color: var(--rose);">AI Authoring</h3>
+      <h2>Decisions &amp; Impact</h2>
+    </div>
+    <div class="split">
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Designed the AI-first abstraction layer</p>
+          <p>SharePoint Pages had no LLM-readable contract &mdash; components were opaque blobs. Proposed and led the design of an AI-first schema that distilled complex page data into structured JSON the model could reason about. Reduced token usage by &gt;50% and significantly improved model focus &mdash; becoming the foundation for every AI feature that followed.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Scoped down to ship through ambiguity</p>
+          <p>Full-page AI editing was undefined &mdash; unclear scope, unproven value. Defined a scoped-down plan targeting section generation: bounded risk, measurable customer value, and fast iteration cycles. Shipped Smart Sections to GA (~60K MAU), validated assumptions with real users, and built the infrastructure that scaled to full-page later.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Turned nondeterministic into measurable</p>
+          <p>LLM output is inherently unpredictable. Built a multi-channel evaluation framework &mdash; assertion-based checks, LLM-as-judge scoring, and visual critic analysis &mdash; to evaluate content quality comprehensively. Gave the team a repeatable way to measure what was previously unmeasurable.</p>
+        </div>
+      </div>
+      <div class="stack gap-16">
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--accent); font-weight: 600;">Identified foundational needs, executed fast</p>
+          <p>Recognized AI Properties as the critical enabler before any feature could ship. Built and rapidly iterated a POC and design doc that proved the value proposition &mdash; leading to adoption by multiple partner feature teams across the organization.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--rose); font-weight: 600;">Navigating constant trade-offs</p>
+          <p>Every decision involved balancing latency, content quality, and system complexity. Developed the judgment to navigate these trade-offs quickly &mdash; knowing when to accept higher latency for better output, when to simplify the architecture, and when good enough is the right call.</p>
+        </div>
+        <div class="card stack gap-8">
+          <p style="font-size: 40px; color: var(--green); font-weight: 600;">Engineering excellence with AI in the loop</p>
+          <p>Embraced AI tooling for velocity while maintaining critical thinking and owning final judgment. Helped the team understand hallucination boundaries, build intuition for when to trust and when to verify, and keep engineering rigor as the bar &mdash; not speed alone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">Six cards showing staff-level judgment in AI. AI-first schema: proposed the abstraction that made everything else possible. Scope down: navigated product ambiguity by shipping a bounded bet. Eval: turned nondeterministic LLM output into something measurable. Fast execution: identified foundational needs early, proved value quickly. Trade-offs: constant navigation between latency, quality, complexity. Engineering excellence: maintained rigor while embracing AI, helped team learn hallucination boundaries.</div>
+</div>
+
 <!-- ═══════════ SLIDE 9: CLOSING ═══════════ -->
 <div class="slide title-slide">
   <div class="stack gap-24">
